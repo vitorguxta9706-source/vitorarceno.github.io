@@ -5,9 +5,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Vitor Arceno – Imóveis em Balneário Piçarras</title>
 
-  <!-- SEO -->
+  <!-- SEO Essentials -->
   <meta name="description" content="Corretor de imóveis em Balneário Piçarras. Conheça os melhores empreendimentos com Vitor Arceno.">
+  <meta name="keywords" content="imóveis, Piçarras, corretor, apartamentos, vendas, lançamentos, litoral">
   <meta name="author" content="Vitor Arceno">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Vitor Arceno – Imóveis em Balneário Piçarras">
+  <meta property="og:description" content="Corretor especializado em imóveis de alto padrão em Balneário Piçarras.">
+  <meta property="og:image" content="https://images.unsplash.com/photo-1568605114967-8130f3a36994?auto=format&fit=crop&w=1200&q=80">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://seusite.com/">
+
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
+  <link rel="preload" as="image" href="https://images.unsplash.com/photo-1568605114967-8130f3a36994?auto=format&fit=crop&w=1600&q=80">
 
   <style>
     :root {
@@ -17,14 +28,24 @@
       --text-light: #ccc;
     }
 
-    * {margin:0;padding:0;box-sizing:border-box}
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
     body {
       font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
       background: var(--dark);
       color: #fff;
       line-height: 1.5;
+      scroll-behavior: smooth;
     }
-    a {color: var(--neongreen);text-decoration:none}
+
+    a {
+      color: var(--neongreen);
+      text-decoration: none;
+    }
 
     /* HERO */
     .hero {
@@ -36,15 +57,31 @@
       text-align: center;
       position: relative;
     }
+
     .hero::before {
       content: "";
       position: absolute;
       inset: 0;
       background: rgba(0, 0, 0, 0.55);
     }
-    .hero-content {position: relative;z-index: 2;padding: 0 20px}
-    .hero h1 {font-size: clamp(2rem, 5vw, 3.5rem);text-shadow: 0 0 10px #000;margin-bottom: 10px}
-    .hero p {font-size: 1.2rem;color: var(--text-light)}
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      padding: 0 20px;
+    }
+
+    .hero h1 {
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      text-shadow: 0 0 10px #000;
+      margin-bottom: 10px;
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      color: var(--text-light);
+    }
+
     .btn-wa {
       background: var(--neongreen);
       color: #000;
@@ -55,8 +92,19 @@
       margin-top: 25px;
       font-weight: 600;
       transition: all 0.3s ease;
+      animation: pulse 1.8s infinite;
     }
-    .btn-wa:hover {transform: scale(1.08);background: var(--neongreen-dark)}
+
+    .btn-wa:hover {
+      transform: scale(1.08);
+      background: var(--neongreen-dark);
+    }
+
+    @keyframes pulse {
+      0% { box-shadow: 0 0 0 0 rgba(0,255,136,0.6); }
+      70% { box-shadow: 0 0 0 15px rgba(0,255,136,0); }
+      100% { box-shadow: 0 0 0 0 rgba(0,255,136,0); }
+    }
 
     /* SIDE CARD */
     .side-card {
@@ -73,6 +121,7 @@
       z-index: 10;
       backdrop-filter: blur(6px);
     }
+
     .side-card img {
       width: 100%;
       border-radius: 50%;
@@ -80,15 +129,27 @@
       object-fit: cover;
       border: 2px solid var(--neongreen);
     }
-    .side-card p {margin-top:8px;font-size:0.85rem;color:var(--text-light);line-height:1.3}
 
-    /* SEÇÃO */
+    .side-card p {
+      margin-top: 8px;
+      font-size: 0.85rem;
+      color: var(--text-light);
+      line-height: 1.3;
+    }
+
+    /* SECTION */
     section {
       padding: 80px 20px;
       max-width: 1100px;
       margin: auto;
     }
-    h2 {font-size: 2.2rem;text-align: center;margin-bottom: 40px}
+
+    h2 {
+      font-size: 2.2rem;
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
     .cards {
       display: grid;
       gap: 30px;
@@ -101,18 +162,38 @@
       border-radius: 14px;
       overflow: hidden;
       transition: transform 0.3s, border-color 0.3s;
+      min-height: 330px;
     }
-    .card:hover {transform: translateY(-8px);border-color: var(--neongreen)}
+
+    .card:hover {
+      transform: translateY(-8px);
+      border-color: var(--neongreen);
+    }
+
     .card img {
       width: 100%;
       height: 220px;
       object-fit: cover;
       border-bottom: 1px solid #222;
-      display: block;
     }
-    .card-body {padding: 18px}
-    .card h3 {margin-bottom: 8px;font-size: 1.2rem;color: var(--neongreen)}
-    .card ul {list-style: none;font-size: 0.9rem;color: var(--text-light);line-height: 1.5}
+
+    .card-body {
+      padding: 18px;
+    }
+
+    .card h3 {
+      margin-bottom: 8px;
+      font-size: 1.2rem;
+      color: var(--neongreen);
+    }
+
+    .card ul {
+      list-style: none;
+      font-size: 0.9rem;
+      color: var(--text-light);
+      line-height: 1.5;
+    }
+
     .btn-card {
       display: block;
       margin: 18px;
@@ -124,7 +205,11 @@
       font-weight: 600;
       transition: all 0.3s ease;
     }
-    .btn-card:hover {background: var(--neongreen-dark);transform: scale(1.05)}
+
+    .btn-card:hover {
+      background: var(--neongreen-dark);
+      transform: scale(1.05);
+    }
 
     footer {
       background: #000;
@@ -133,11 +218,22 @@
       font-size: 0.9rem;
       color: #777;
     }
-    footer a:hover {text-decoration: underline}
 
-    @media(max-width:900px){
-      .side-card{position:static;transform:none;margin:20px auto;width:200px}
-      .hero{height:90vh}
+    footer a:hover {
+      text-decoration: underline;
+    }
+
+    @media(max-width: 900px) {
+      .side-card {
+        position: static;
+        transform: none;
+        margin: 20px auto;
+        width: 200px;
+      }
+
+      .hero {
+        height: 90vh;
+      }
     }
   </style>
 </head>
@@ -163,7 +259,7 @@
 
       <!-- Ilhas de Fiji -->
       <div class="card">
-        <img loading="lazy" src="https://valuable-amethyst-iftgnzkoza.edgeone.app/WhatsApp%20Image%202026-01-21%20at%2014.36.07.jpeg" alt="Residencial Ilhas de Fiji">
+        <img loading="lazy" src="https://images.unsplash.com/photo-1572120360610-d971b9b78825?auto=format&fit=crop&w=800&q=80" alt="Residencial Ilhas de Fiji">
         <div class="card-body">
           <h3>Ilhas de Fiji</h3>
           <ul>
