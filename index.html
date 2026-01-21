@@ -7,28 +7,28 @@
   <style>
     :root{--neongreen:#00ff88;--neongreen-dark:#00cc6a;--dark:#111}
     *{box-sizing:border-box;margin:0;padding:0}
-    body{font-family:"Segoe UI",Roboto,Helvetica,Arial,sans-serif;background:#111;color:#fff}
+    body{font-family:"Segoe UI",Roboto,plato,Helvetica,Arial,sans-serif;background:#111;color:#fff}
     .hero{height:100vh;background:url(https://source.unsplash.com/1600x900/?beachhouse) center/cover;display:flex;align-items:center;justify-content:center;text-align:center;position:relative}
     .hero::before{content:"";position:absolute;inset:0;background:rgba(0,0,0,.55)}
     .hero-content{position:relative;z-index:2}
     .hero h1{font-size:clamp(2rem, 5vw, 3.5rem);text-shadow:0 0 10px #000}
     .btn-wa{background:var(--neongreen);color:#000;font-size:1.3rem;padding:14px 28px;border-radius:50px;text-decoration:none;display:inline-block;margin-top:20px;animation:pulse 1.5s infinite}
     @keyframes pulse{0%{box-shadow:0 0 0 0 var(--neongreen-dark)}70%{box-shadow:0 0 20px 20px rgba(0,255,136,0)}100%{box-shadow:0 0 0 0 rgba(0,255,136,0)}}
-    section{padding:60px 20px;max-width:1100px;margin:auto}
-    h2{font-size:2rem;margin-bottom:25px;text-align:center}
-    .cards{display:grid;gap:25px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
-    .card{background:#1a1a1a;border:1px solid #333;border-radius:12px;overflow:hidden;transition:.3s;position:relative;min-height:320px}
-    .card:hover{transform:translateY(-7px);border-color:var(--neongreen)}
-    .card img{width:100%;height:100%;object-fit:cover;border-radius:12px}
-    .card-body{position:absolute;bottom:0;left:0;right:0;background:rgba(0,0,0,.55);padding:18px;border-radius:0 0 12px 0}
-    .card h3{margin:8px 0 4px}
-    .card ul{list-style:none;padding-left:0;font-size:.9rem;color:#ccc}
-    .btn-card{display:block;margin:12px 18px 18px;background:var(--neongreen);color:#000;padding:10px 0;border-radius:25px;text-align:center;text-decoration:none;font-weight:600}
-    footer{background:#000;padding:25px;text-align:center;font-size:.9rem;color:#777}
-    @media(max-width:600px){.hero h1{font-size:2rem}}
+
+    /* ----- NOVO CARD FOTO ----- */
+    .side-card{position:fixed;top:50%;left:20px;transform:translateY(-50%);width:160px;background:rgba(0,0,0,.75);border:1px solid var(--neongreen);border-radius:12px;padding:12px;text-align:center;z-index:10}
+    .side-card img{width:100%;border-radius:50%;aspect-ratio:1/1;object-fit:cover;border:2px solid var(--neongreen)}
+    .side-card p{margin-top:8px;font-size:.85rem;color:#ccc}
+    @media(max-width:900px){.side-card{position:static;transform:none;margin:20px auto;width:200px}}
   </style>
 </head>
 <body>
+
+<!-- CARD FOTO -->
+<aside class="side-card">
+  <img src=" SUA_FOTO.jpg " alt="Vitor Arceno">
+  <p>Vitor Arceno<br>Corretor de Imóveis<br>Balneário Piçarras</p>
+</aside>
 
 <header class="hero">
   <div class="hero-content">
@@ -38,48 +38,10 @@
   </div>
 </header>
 
-<section>
-  <h2>Imóveis em destaque</h2>
-  <div class="cards">
-
-    <!-- Ilhas de Fiji -->
-    <div class="card">
-      <img src="https://cheerful-salmon-znxsvm9yg4.edgeone.app/WhatsApp%20Image%202026-01-21%20at%2014.36.07.jpeg" alt="Ilhas de Fiji">
-      <div class="card-body">
-        <h3>Ilhas de Fiji</h3>
-        <ul>
-          <li>2 dormitórios (2 suítes)</li>
-          <li>3 banheiros</li>
-          <li>1 vaga</li>
-          <li>78,85 m²</li>
-        </ul>
-      </div>
-      <a class="btn-card" href="https://wa.me/5547920006793?text=Ol%C3%A1%2C%20quero%20saber%20mais%20sobre%20o%20Residencial%20Ilhas%20de%20Fiji">Saber mais sobre esse empreendimento</a>
-    </div>
-
-    <!-- Residencial Mayorca -->
-    <div class="card">
-      <img src="https://immediate-salmon-br40ggvbfq.edgeone.app/Gemini_Generated_Image_uym46vuym46vuym4.png" alt="Residencial Mayorca">
-      <div class="card-body">
-        <h3>Residencial Mayorca</h3>
-        <ul>
-          <li>2 dormitórios (1 suíte)</li>
-          <li>2 banheiros</li>
-          <li>1 vaga</li>
-          <li>60,86 m²</li>
-        </ul>
-      </div>
-      <a class="btn-card" href="https://wa.me/5547920006793?text=Ol%C3%A1%2C%20quero%20saber%20mais%20sobre%20o%20Residencial%20Mayorca">Saber mais sobre esse empreendimento</a>
-    </div>
-
-  </div>
+<!-- RESTANTE DO SEU CONTEÚDO AQUI -->
+<section style="padding:60pxpx 20px;max-width:1100px;margin:auto">
+  <!-- seus cards, etc. -->
 </section>
-
-<footer>
-  WhatsApp <a href="https://wa.me/5547920006793">(47) 92000-6793</a> |
-  <a href="mailto:vitor_arceno@hotmail.com">vitor_arceno@hotmail.com</a> |
-  IG: <a href="https://instagram.com/vitor_arceno_" target="_blank">@vitor_arceno_</a>
-</footer>
 
 </body>
 </html>
