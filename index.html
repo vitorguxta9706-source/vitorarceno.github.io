@@ -19,7 +19,16 @@
     .cards{display:grid;gap:25px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
     .card{background:#1a1a1a;border:1px solid #333;border-radius:12px;overflow:hidden;transition:.3s}
     .card:hover{transform:translateY(-7px);border-color:var(--neongreen)}
-    .card img{width:100%;height:180px;object-fit:cover}
+    .card img{
+  width:100%;
+  height:100%;        /* ocupa toda altura do card */
+  object-fit:cover;   /* recorta, mas preenche */
+  border-radius:12px 12px 0 0;
+}
+.card{
+  min-height:320px;   /* ou o valor que achar melhor */
+}
+
     .card-body{padding:18px}
     .card h3{margin:8px 0 4px}
     .card ul{list-style:none;padding-left:0;font-size:.9rem;color:#ccc}
