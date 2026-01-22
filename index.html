@@ -1,33 +1,53 @@
+<!-- ============================= -->
+<!-- ARQUIVO 1: index.html        -->
+<!-- Página principal premium     -->
+<!-- ============================= -->
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Vitor Arceno – Imóveis em Balneário Piçarras</title>
 
-  <!-- Ícones -->
+  <title>Vitor Arceno | Corretor de Imóveis em Balneário Piçarras</title>
+
+  <!-- SEO Básico -->
+  <meta name="description" content="Corretor de imóveis em Balneário Piçarras. Encontre apartamentos, lançamentos e oportunidades exclusivas com atendimento direto no WhatsApp." />
+  <meta name="keywords" content="corretor Balneário Piçarras, imóveis Piçarras, apartamento na planta, comprar apartamento SC" />
+  <meta name="author" content="Vitor Arceno" />
+
+  <!-- Open Graph (melhora compartilhamento no WhatsApp e redes sociais) -->
+  <meta property="og:title" content="Vitor Arceno | Imóveis em Balneário Piçarras" />
+  <meta property="og:description" content="Confira imóveis selecionados e fale direto comigo no WhatsApp." />
+  <meta property="og:image" content="https://odd-ivory-amafrcm6wz.edgeone.app/picarras-2048x1152-1.jpeg" />
+  <meta property="og:type" content="website" />
+
+  <!-- Ícones Font Awesome -->
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 
   <style>
     :root {
-      --neongreen: #00ff88;
-      --neongreen-dark: #00cc66;
-      --dark: #111;
+      --primary: #00ff88;
+      --primary-dark: #00cc66;
+      --bg: #0e0e0e;
+      --card: #161616;
+      --text: #ffffff;
+      --muted: #aaaaaa;
     }
 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
 
     body {
-      font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-      background: var(--dark);
-      color: #fff;
-      line-height: 1.5;
+      font-family: 'Poppins', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
     }
 
+    /* HERO */
     .hero {
       height: 100vh;
       background: url("https://odd-ivory-amafrcm6wz.edgeone.app/picarras-2048x1152-1.jpeg") center/cover no-repeat;
@@ -39,160 +59,152 @@
     }
 
     .hero::before {
-      content: "";
+      content: '';
       position: absolute;
       inset: 0;
-      background: rgba(0,0,0,0.6);
+      background: rgba(0,0,0,0.65);
     }
 
     .hero-content {
       position: relative;
       z-index: 2;
+      max-width: 800px;
+      padding: 20px;
     }
 
-    .btn-wa {
-      background: var(--neongreen);
-      color: #000;
+    .hero h1 {
+      font-size: 3rem;
+      margin-bottom: 10px;
+    }
+
+    .hero p {
+      color: var(--muted);
       font-size: 1.2rem;
-      padding: 14px 30px;
-      border-radius: 50px;
+    }
+
+    .btn-primary {
       display: inline-block;
-      margin-top: 25px;
+      margin-top: 30px;
+      padding: 16px 40px;
+      background: var(--primary);
+      color: #000;
+      border-radius: 50px;
       font-weight: 600;
       text-decoration: none;
+      transition: 0.3s ease;
     }
 
-    .side-card {
-      position: fixed;
-      top: 50%;
-      left: 20px;
-      transform: translateY(-50%);
-      width: 170px;
-      background: rgba(0, 0, 0, 0.8);
-      border: 1px solid var(--neongreen);
-      border-radius: 12px;
-      padding: 14px;
+    .btn-primary:hover {
+      background: var(--primary-dark);
+      transform: scale(1.05);
+    }
+
+    /* CAPTURA DE LEADS */
+    .lead-box {
+      background: linear-gradient(135deg, #00ff8844, #000);
+      padding: 50px 20px;
       text-align: center;
-      z-index: 10;
     }
 
-    .side-card img {
-      width: 100%;
-      border-radius: 50%;
-      aspect-ratio: 1/1;
-      object-fit: cover;
-      border: 2px solid var(--neongreen);
-    }
+    .lead-box h2 { margin-bottom: 20px; }
 
-    section {
-      padding: 80px 20px;
-      max-width: 1100px;
+    .lead-form {
+      max-width: 500px;
       margin: auto;
+      display: grid;
+      gap: 15px;
     }
 
-    h2 {
-      text-align: center;
-      margin-bottom: 40px;
+    .lead-form input {
+      padding: 14px;
+      border-radius: 8px;
+      border: none;
+      font-size: 1rem;
     }
+
+    .lead-form button {
+      padding: 14px;
+      background: var(--primary);
+      border: none;
+      font-weight: bold;
+      border-radius: 30px;
+      cursor: pointer;
+    }
+
+    /* CARDS PREMIUM */
+    section { padding: 80px 20px; max-width: 1200px; margin: auto; }
 
     .cards {
       display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
       gap: 30px;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     }
 
     .card {
-      background: #1a1a1a;
-      border: 1px solid #333;
-      border-radius: 14px;
+      background: var(--card);
+      border-radius: 20px;
       overflow: hidden;
+      transition: 0.4s ease;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.4);
     }
 
-    .card img {
-      width: 100%;
-      height: 220px;
-      object-fit: cover;
-      display: block;
+    .card:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(0,255,136,0.2); }
+
+    .card img { width: 100%; height: 220px; object-fit: cover; }
+
+    .card-body { padding: 20px; }
+
+    .card-body h3 { color: var(--primary); margin-bottom: 10px; }
+
+    .details {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+      font-size: 0.9rem;
+      color: var(--muted);
     }
 
-    .card-body {
-      padding: 18px;
-    }
-
-    .card-body h3 {
-      color: var(--neongreen);
-      margin-bottom: 10px;
-      font-size: 1.2rem;
-    }
-
-    .card-body ul {
-      list-style: none;
-      color: #fff;
-      font-size: 0.95rem;
-      line-height: 1.6;
-    }
+    .details i { color: var(--primary); margin-right: 5px; }
 
     .btn-card {
       display: block;
-      margin: 18px;
-      background: var(--neongreen);
-      color: #000;
-      padding: 12px 0;
-      border-radius: 25px;
+      margin-top: 20px;
+      padding: 12px;
       text-align: center;
-      font-weight: 600;
+      background: var(--primary);
+      color: #000;
+      font-weight: bold;
+      border-radius: 30px;
       text-decoration: none;
     }
 
+    /* RODAPÉ */
     footer {
       background: #000;
-      padding: 25px;
       text-align: center;
-      font-size: 1.5rem;
+      padding: 30px 10px;
     }
 
-    footer a {
-      color: var(--neongreen);
-      margin: 0 15px;
-      text-decoration: none;
-    }
+    footer a { color: var(--primary); margin: 0 15px; font-size: 1.5rem; }
 
-    footer small {
-      display: block;
-      margin-top: 15px;
-      font-size: 0.85rem;
-      color: #666;
-    }
+    footer small { display: block; margin-top: 15px; color: #555; }
 
-    @media(max-width: 900px) {
-      .side-card {
-        position: static;
-        transform: none;
-        margin: 20px auto;
-      }
-    }
   </style>
 </head>
-
 <body>
 
-  <aside class="side-card">
-    <img src="https://related-fuchsia-2tll7jftii.edgeone.app/Gemini_Generated_Image_rysid4rysid4rysi.png">
-    <p><strong>Vitor Arceno</strong><br>Corretor de Imóveis<br>Balneário Piçarras</p>
-  </aside>
-
+  <!-- HERO -->
   <header class="hero">
     <div class="hero-content">
       <h1>Vitor Arceno</h1>
-      <p>Corretor de Imóveis – Balneário Piçarras</p>
-      <a class="btn-wa" href="https://wa.me/5547920006793?text=Olá,%20quero%20comprar%20um%20imóvel">
-        Quero comprar um imóvel
-      </a>
+      <p>Corretor de imóveis em Balneário Piçarras</p>
+      <a class="btn-primary" href="https://wa.me/5547920006793?text=Olá,%20quero%20comprar%20um%20imóvel">Falar no WhatsApp</a>
     </div>
   </header>
 
+  <!-- CARDS -->
   <section>
-    <h2>Imóveis em destaque</h2>
+    <h2 style="text-align:center;margin-bottom:40px">Imóveis em destaque</h2>
 
     <div class="cards">
 
@@ -200,33 +212,45 @@
         <img src="https://valuable-amethyst-iftgnzkoza.edgeone.app/WhatsApp%20Image%202026-01-21%20at%2014.36.07.jpeg">
         <div class="card-body">
           <h3>Ilhas de Fiji</h3>
-          <ul>
-            <li>2 dormitórios (2 suítes)</li>
-            <li>3 banheiros</li>
-            <li>1 vaga</li>
-            <li>78,85 m²</li>
-          </ul>
+          <div class="details">
+            <div><i class="fa-solid fa-bed"></i> 2 dormitórios</div>
+            <div><i class="fa-solid fa-shower"></i> 3 banheiros</div>
+            <div><i class="fa-solid fa-car"></i> 1 vaga</div>
+            <div><i class="fa-solid fa-ruler-combined"></i> 78,85 m²</div>
+          </div>
+          <a class="btn-card" href="imovel-fiji.html">Ver imóvel</a>
         </div>
-        <a class="btn-card" href="https://wa.me/5547920006793?text=Olá,%20quero%20saber%20mais%20sobre%20o%20Residencial%20Ilhas%20de%20Fiji">Saber mais</a>
       </div>
 
       <div class="card">
         <img src="https://outer-crimson-f2ijobxdpt.edgeone.app/Gemini_Generated_Image_uym46vuym46vuym4.png">
         <div class="card-body">
           <h3>Residencial Mayorca</h3>
-          <ul>
-            <li>2 dormitórios (1 suíte)</li>
-            <li>2 banheiros</li>
-            <li>1 vaga</li>
-            <li>60,86 m²</li>
-          </ul>
+          <div class="details">
+            <div><i class="fa-solid fa-bed"></i> 2 dormitórios</div>
+            <div><i class="fa-solid fa-shower"></i> 2 banheiros</div>
+            <div><i class="fa-solid fa-car"></i> 1 vaga</div>
+            <div><i class="fa-solid fa-ruler-combined"></i> 60,86 m²</div>
+          </div>
+          <a class="btn-card" href="imovel-mayorca.html">Ver imóvel</a>
         </div>
-        <a class="btn-card" href="https://wa.me/5547920006793?text=Olá,%20quero%20saber%20mais%20sobre%20o%20Residencial%20Mayorca">Saber mais</a>
       </div>
 
     </div>
   </section>
 
+  <!-- CAPTURA DE LEADS -->
+  <section class="lead-box">
+    <h2>Quer receber oportunidades exclusivas?</h2>
+    <form class="lead-form">
+      <input type="text" placeholder="Seu nome" required>
+      <input type="email" placeholder="Seu e-mail" required>
+      <input type="tel" placeholder="Seu WhatsApp" required>
+      <button>Quero receber imóveis</button>
+    </form>
+  </section>
+
+  <!-- RODAPÉ -->
   <footer>
     <a href="https://wa.me/5547920006793"><i class="fab fa-whatsapp"></i></a>
     <a href="mailto:vitor_arceno@hotmail.com"><i class="fas fa-envelope"></i></a>
@@ -234,6 +258,37 @@
 
     <small>© 2026 Vitor Arceno — Todos os direitos reservados.</small>
   </footer>
+
+</body>
+</html>
+
+
+<!-- ===================================== -->
+<!-- ARQUIVO 2: imovel-mayorca.html        -->
+<!-- Página individual de imóvel           -->
+<!-- ===================================== -->
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Residencial Mayorca | Vitor Arceno</title>
+  <meta name="description" content="Apartamento no Residencial Mayorca em Balneário Piçarras. Fale direto com o corretor no WhatsApp." />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+</head>
+<body style="background:#0e0e0e;color:#fff;font-family:Poppins;padding:40px">
+
+  <h1>Residencial Mayorca</h1>
+  <img src="https://outer-crimson-f2ijobxdpt.edgeone.app/Gemini_Generated_Image_uym46vuym46vuym4.png" style="max-width:500px;border-radius:20px">
+
+  <ul>
+    <li>2 dormitórios (1 suíte)</li>
+    <li>2 banheiros</li>
+    <li>1 vaga</li>
+    <li>60,86 m²</li>
+  </ul>
+
+  <a href="https://wa.me/5547920006793?text=Tenho%20interesse%20no%20Residencial%20Mayorca" style="display:inline-block;margin-top:20px;padding:15px 30px;background:#00ff88;color:#000;border-radius:30px;text-decoration:none;font-weight:bold">Falar no WhatsApp</a>
 
 </body>
 </html>
