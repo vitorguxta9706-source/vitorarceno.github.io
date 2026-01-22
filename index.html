@@ -1,210 +1,175 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Vitor Arceno – Corretor de Imóveis em Balneário Piçarras</title>
+<meta charset="UTF-8">
+<title>Vitor Arceno | Imóveis em Balneário Piçarras</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <!-- SEO avançado -->
-  <meta name="description" content="Corretor de imóveis em Balneário Piçarras. Apartamentos, lançamentos e oportunidades exclusivas. Atendimento profissional via WhatsApp." />
-  <meta name="keywords" content="corretor Balneário Piçarras, imóveis Piçarras, comprar apartamento SC, imóveis na praia" />
-  <meta name="author" content="Vitor Arceno" />
+<meta name="description" content="Imóveis em Balneário Piçarras com atendimento profissional.">
+<meta property="og:title" content="Vitor Arceno | Imóveis">
+<meta property="og:type" content="website">
 
-  <!-- Open Graph -->
-  <meta property="og:title" content="Vitor Arceno – Imóveis em Balneário Piçarras" />
-  <meta property="og:description" content="Encontre imóveis exclusivos em Balneário Piçarras com atendimento profissional." />
-  <meta property="og:type" content="website" />
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
-  <!-- Schema.org corretor -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "RealEstateAgent",
-    "name": "Vitor Arceno",
-    "address": {
-      "@type": "PostalAddress",
-      "addressLocality": "Balneário Piçarras",
-      "addressRegion": "SC",
-      "addressCountry": "BR"
-    },
-    "url": "https://seusite.com.br",
-    "sameAs": ["https://instagram.com/vitor_arceno_"]
-  }
-  </script>
-
-  <!-- Ícones -->
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
-
-  <!-- Manifest PWA gerado via JS -->
-
-  <style>
-    :root{
-      --green:#00ff88;--green-dark:#00cc66;--bg:#0e0e0e;--card:#161616;--text:#eaeaea;--muted:#aaa;
-    }
-    *{margin:0;padding:0;box-sizing:border-box}
-    body{font-family:Inter,Arial,sans-serif;background:var(--bg);color:var(--text)}
-
-    /* PERFIL */
-    .profile{position:fixed;top:50%;left:20px;transform:translateY(-50%);background:#000c;border:1px solid var(--green);padding:14px;border-radius:16px;text-align:center;width:180px;z-index:10}
-    .profile img{width:120px;height:120px;border-radius:50%;object-fit:cover;border:2px solid var(--green)}
-    .profile p{font-size:.85rem;margin-top:10px;color:var(--muted)}
-
-    /* HERO */
-    header{height:100vh;background:url('https://odd-ivory-amafrcm6wz.edgeone.app/picarras-2048x1152-1.jpeg') center/cover no-repeat;position:relative;display:flex;align-items:center;justify-content:center;text-align:center}
-    header::after{content:'';position:absolute;inset:0;background:rgba(0,0,0,.65)}
-    .hero{position:relative;z-index:2;max-width:700px;padding:20px}
-    .hero a{display:inline-block;margin-top:25px;background:var(--green);color:#000;padding:14px 32px;border-radius:40px;font-weight:bold;text-decoration:none}
-
-    section{max-width:1200px;margin:auto;padding:80px 20px}
-    h2{text-align:center;margin-bottom:40px}
-
-    /* CARDS */
-    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:30px}
-    .card{background:var(--card);border-radius:18px;overflow:hidden;border:1px solid #222;transition:.3s;cursor:pointer}
-    .card:hover{transform:translateY(-6px);box-shadow:0 10px 30px #000;border-color:var(--green)}
-    .card img{width:100%;height:200px;object-fit:cover}
-    .card-body{padding:20px}
-    .icons{display:grid;gap:8px;font-size:.9rem;color:var(--muted)}
-    .icons i{color:var(--green);margin-right:6px}
-
-    /* ADMIN */
-    #admin{background:#0b0b0b;border:1px solid #222;padding:30px;border-radius:20px;margin-top:80px}
-    #admin input,#admin button{width:100%;padding:12px;margin:6px 0;border-radius:10px;border:none}
-    #admin button{background:var(--green);font-weight:bold;cursor:pointer}
-
-    /* MODAL DETALHE */
-    #detalhe{position:fixed;inset:0;background:#000e;display:none;align-items:center;justify-content:center;z-index:50}
-    #detalhe .box{background:#111;padding:30px;border-radius:20px;max-width:600px;width:90%}
-
-    footer{text-align:center;background:#000;padding:30px;color:#777;font-size:.9rem}
-    footer i{color:var(--green);margin:0 6px}
-
-    @media(max-width:900px){.profile{position:static;transform:none;margin:20px auto}}
-  </style>
+<style>
+body{margin:0;font-family:Inter,Arial;background:#0e0e0e;color:#fff}
+header{padding:40px;text-align:center}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px;padding:40px}
+.card{background:#161616;border-radius:16px;overflow:hidden;cursor:pointer}
+.card img{width:100%;height:200px;object-fit:cover}
+.card div{padding:20px}
+button{padding:12px 20px;border:none;border-radius:10px;background:#00ff88;font-weight:bold;cursor:pointer}
+#admin{display:none;background:#111;padding:30px;margin:40px;border-radius:20px}
+input,select{width:100%;padding:12px;margin:6px 0;border-radius:10px;border:none}
+#modal{position:fixed;inset:0;background:#000e;display:none;align-items:center;justify-content:center}
+#modal .box{background:#111;padding:30px;border-radius:20px;max-width:700px;width:95%}
+.gallery img{width:100%;margin-bottom:10px;border-radius:10px}
+</style>
 </head>
+
 <body>
 
-<div class="profile">
-  <img src="https://related-fuchsia-2tll7jftii.edgeone.app/Gemini_Generated_Image_rysid4rysid4rysi.png">
-  <p><strong>Vitor Arceno</strong><br>Corretor de Imóveis<br>Balneário Piçarras</p>
-</div>
-
 <header>
-  <div class="hero">
-    <h1>Vitor Arceno</h1>
-    <p>Especialista em imóveis em Balneário Piçarras</p>
-    <a href="https://wa.me/5547920006793?text=Olá,%20quero%20comprar%20um%20imóvel">Quero comprar um imóvel</a>
-  </div>
+  <h1>Vitor Arceno</h1>
+  <p>Especialista em imóveis em Balneário Piçarras</p>
+  <button onclick="login()">Área do Corretor</button>
 </header>
 
-<section>
-  <h2>Imóveis em destaque</h2>
-  <div class="grid" id="lista"></div>
-</section>
-
-<section>
-  <h2>Localização</h2>
-  <iframe src="https://www.google.com/maps?q=Balneário%20Piçarras&output=embed" width="100%" height="350" style="border-radius:20px;border:0"></iframe>
-</section>
+<section class="grid" id="lista"></section>
 
 <section id="admin">
-  <h2>Painel do Corretor</h2>
-  <div id="login">
-    <input type="password" id="senha" placeholder="Senha de acesso">
-    <button onclick="entrar()">Entrar</button>
-  </div>
+<h2>Painel do Corretor</h2>
 
-  <div id="painel" style="display:none">
-    <input id="titulo" placeholder="Nome do imóvel">
-    <input id="slug" placeholder="Slug (ex: residencial-fiji)">
-    <input id="img" type="file">
-    <input id="dorm" placeholder="Dormitórios">
-    <input id="ban" placeholder="Banheiros">
-    <input id="vaga" placeholder="Vagas">
-    <input id="area" placeholder="Metragem">
-    <button onclick="salvar()">Salvar imóvel</button>
-    <div id="gerenciar"></div>
-  </div>
+<input id="titulo" placeholder="Título">
+<input id="slug" placeholder="Slug (ex: ilhas-de-fiji)">
+<input id="bairro" placeholder="Bairro">
+<input id="tipo" placeholder="Tipo (Apartamento, Casa)">
+<input id="valor" placeholder="Valor">
+<input id="dorm" placeholder="Dormitórios">
+<input id="ban" placeholder="Banheiros">
+<input id="vaga" placeholder="Vagas">
+<input id="area" placeholder="Área m²">
+<input type="file" id="fotos" multiple>
+
+<button onclick="salvar()">Salvar imóvel</button>
+
+<div id="gerenciar"></div>
 </section>
 
-<div id="detalhe"></div>
-
-<footer>
-  <p>
-    <i class="fab fa-whatsapp"></i> (47) 92000-6793 |
-    <i class="fas fa-envelope"></i> vitor_arceno@hotmail.com |
-    <i class="fab fa-instagram"></i> @vitor_arceno_
-  </p>
-  <p style="margin-top:10px">© 2026 Vitor Arceno. Todos os direitos reservados.</p>
-</footer>
+<div id="modal"></div>
 
 <script>
-// PWA manifest dinâmico
-const manifest={name:"Imóveis Vitor Arceno",short_name:"Imóveis",start_url:"/",display:"standalone",background_color:"#000",theme_color:"#00ff88",icons:[]};
-const blob=new Blob([JSON.stringify(manifest)],{type:'application/json'});
-document.head.insertAdjacentHTML('beforeend',`<link rel="manifest" href="${URL.createObjectURL(blob)}">`);
+const supabase = supabaseJs.createClient(
+  "https://zctvqhghwrvbksjohjxv.supabase.co",
+  "sb_publishable_QXsGONCWjyvuXUZRljGwsA_tB2smuY7"
+);
 
-// Service Worker básico
-if('serviceWorker' in navigator){
-  const sw = `self.addEventListener('fetch',e=>{});`;
-  navigator.serviceWorker.register(URL.createObjectURL(new Blob([sw],{type:'text/javascript'})));
-}
+const lista = document.getElementById("lista");
+const modal = document.getElementById("modal");
 
-let dados = JSON.parse(localStorage.getItem('imoveis')) || [
-  {slug:'ilhas-de-fiji',titulo:'Ilhas de Fiji',img:'https://valuable-amethyst-iftgnzkoza.edgeone.app/WhatsApp%20Image%202026-01-21%20at%2014.36.07.jpeg',dorm:'2 dormitórios (2 suítes)',ban:'3 banheiros',vaga:'1 vaga',area:'78,85 m²'},
-  {slug:'residencial-mayorca',titulo:'Residencial Mayorca',img:'https://outer-crimson-f2ijobxdpt.edgeone.app/Gemini_Generated_Image_uym46vuym46vuym4.png',dorm:'2 dormitórios (1 suíte)',ban:'2 banheiros',vaga:'1 vaga',area:'60,86 m²'}
-];
-
-function render(){
-  const lista=document.getElementById('lista');
-  lista.innerHTML='';
-  dados.forEach(i=>{
-    lista.innerHTML+=`
+async function carregar() {
+  const { data } = await supabase.from("imoveis").select("*").order("created_at",{ascending:false});
+  lista.innerHTML = "";
+  data.forEach(i => {
+    lista.innerHTML += `
       <div class="card" onclick="abrir('${i.slug}')">
-        <img src="${i.img}">
-        <div class="card-body">
+        <img src="${i.fotos[0]}">
+        <div>
           <h3>${i.titulo}</h3>
-          <div class="icons">
-            <div><i class="fas fa-bed"></i> ${i.dorm}</div>
-            <div><i class="fas fa-bath"></i> ${i.ban}</div>
-            <div><i class="fas fa-car"></i> ${i.vaga}</div>
-            <div><i class="fas fa-ruler-combined"></i> ${i.area}</div>
-          </div>
+          <p>${i.bairro} • ${i.tipo}</p>
+          <strong>R$ ${Number(i.valor).toLocaleString()}</strong>
         </div>
       </div>`;
   });
-  renderAdmin();
 }
 
-function abrir(slug){
-  const i=dados.find(x=>x.slug===slug);
-  if(!i) return;
-  history.pushState({},'',`#/imovel/${slug}`);
-  detalhe.innerHTML=`<div class="box"><h2>${i.titulo}</h2><img src="${i.img}" style="width:100%;border-radius:15px;margin:15px 0"><p>${i.dorm} • ${i.ban} • ${i.vaga} • ${i.area}</p><br><a href="https://wa.me/5547920006793?text=Tenho%20interesse%20no%20${i.titulo}" style="color:#00ff88">Falar no WhatsApp</a><br><br><button onclick="fechar()">Fechar</button></div>`;
-  detalhe.style.display='flex';
-}
-function fechar(){detalhe.style.display='none'}
+async function abrir(slug){
+  const { data } = await supabase.from("imoveis").select("*").eq("slug",slug).single();
+  history.pushState({}, "", `/imovel/${slug}`);
 
-function entrar(){if(senha.value==='1234'){login.style.display='none';painel.style.display='block'}else alert('Senha incorreta')}
-
-function salvar(){
-  const reader=new FileReader();
-  reader.onload=()=>{
-    dados.push({slug:slug.value,titulo:titulo.value,img:reader.result,dorm:dorm.value,ban:ban.value,vaga:vaga.value,area:area.value});
-    localStorage.setItem('imoveis',JSON.stringify(dados));
-    render();
-  };
-  reader.readAsDataURL(img.files[0]);
-}
-
-function excluir(sl){dados=dados.filter(i=>i.slug!==sl);localStorage.setItem('imoveis',JSON.stringify(dados));render();}
-
-function renderAdmin(){
-  gerenciar.innerHTML='<h3>Gerenciar imóveis</h3>';
-  dados.forEach(i=>{gerenciar.innerHTML+=`<p>${i.titulo} <button onclick="excluir('${i.slug}')">Excluir</button></p>`})
+  modal.innerHTML = `
+    <div class="box">
+      <h2>${data.titulo}</h2>
+      <div class="gallery">
+        ${data.fotos.map(f=>`<img src="${f}">`).join("")}
+      </div>
+      <p>${data.dormitorios} dorm • ${data.banheiros} ban • ${data.vagas} vagas</p>
+      <p>${data.area} m²</p>
+      <p><strong>R$ ${Number(data.valor).toLocaleString()}</strong></p>
+      <a href="https://wa.me/5547920006793?text=Tenho interesse no ${data.titulo}" target="_blank">
+        <button>WhatsApp</button>
+      </a>
+      <br><br>
+      <button onclick="fechar()">Fechar</button>
+    </div>`;
+  modal.style.display="flex";
 }
 
-render();
+function fechar(){
+  modal.style.display="none";
+  history.pushState({}, "", "/");
+}
+
+async function login(){
+  const email = prompt("Email:");
+  const senha = prompt("Senha:");
+  const { error } = await supabase.auth.signInWithPassword({ email, password: senha });
+  if(error) return alert("Erro no login");
+  document.getElementById("admin").style.display="block";
+  carregarAdmin();
+}
+
+async function salvar(){
+  const files = fotos.files;
+  let urls = [];
+
+  for (let f of files){
+    const path = `${slug.value}/${Date.now()}-${f.name}`;
+    await supabase.storage.from("imoveis").upload(path, f);
+    const { data } = supabase.storage.from("imoveis").getPublicUrl(path);
+    urls.push(data.publicUrl);
+  }
+
+  await supabase.from("imoveis").insert({
+    titulo: titulo.value,
+    slug: slug.value,
+    bairro: bairro.value,
+    tipo: tipo.value,
+    valor: valor.value,
+    dormitorios: dorm.value,
+    banheiros: ban.value,
+    vagas: vaga.value,
+    area: area.value,
+    fotos: urls
+  });
+
+  alert("Imóvel salvo");
+  carregar();
+  carregarAdmin();
+}
+
+async function excluir(id){
+  await supabase.from("imoveis").delete().eq("id",id);
+  carregar();
+  carregarAdmin();
+}
+
+async function carregarAdmin(){
+  const { data } = await supabase.from("imoveis").select("*");
+  gerenciar.innerHTML="<h3>Gerenciar imóveis</h3>";
+  data.forEach(i=>{
+    gerenciar.innerHTML+=`
+      <p>${i.titulo}
+      <button onclick="excluir('${i.id}')">Excluir</button></p>`;
+  });
+}
+
+window.onload = () => {
+  carregar();
+  const slug = location.pathname.split("/imovel/")[1];
+  if(slug) abrir(slug);
+};
 </script>
+
 </body>
 </html>
