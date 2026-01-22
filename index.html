@@ -235,144 +235,145 @@
     <small>© 2026 Vitor Arceno — Todos os direitos reservados.</small>
   </footer>
 
-<!-- Chatbot Corretor Vitor Arceno -->
 <style>
-#chatbot-btn {
+#chatbot {
   position: fixed;
   bottom: 20px;
   right: 20px;
-  background: #0f766e;
-  color: #fff;
-  border-radius: 50%;
-  width: 60px;
-  height: 60px;
-  border: none;
-  font-size: 26px;
-  cursor: pointer;
-  z-index: 9999;
-}
-
-#chatbot-box {
-  position: fixed;
-  bottom: 90px;
-  right: 20px;
-  width: 320px;
-  height: 420px;
+  width: 340px;
+  max-height: 460px;
   background: #fff;
-  border-radius: 10px;
-  box-shadow: 0 10px 30px rgba(0,0,0,.2);
-  display: none;
+  border-radius: 16px;
+  box-shadow: 0 15px 40px rgba(0,0,0,.25);
+  display: flex;
   flex-direction: column;
+  font-family: Arial, sans-serif;
+  overflow: hidden;
   z-index: 9999;
+  animation: fadeUp .4s ease;
 }
 
-#chatbot-header {
-  background: #0f766e;
-  color: #fff;
-  padding: 12px;
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+#chatbot header {
+  background: #0a7cff;
+  color: white;
+  padding: 14px;
+  text-align: center;
   font-weight: bold;
+  font-size: 1rem;
 }
 
-#chatbot-messages {
+#messages {
   flex: 1;
-  padding: 10px;
+  padding: 12px;
   overflow-y: auto;
-  font-size: 14px;
+  background: #f4f4f4;
 }
 
-.msg-user {
-  text-align: right;
-  margin: 6px 0;
-}
-.msg-bot {
-  text-align: left;
-  margin: 6px 0;
-}
-.msg-user span {
-  background: #d1fae5;
-  padding: 6px 10px;
-  border-radius: 10px;
-  display: inline-block;
-}
-.msg-bot span {
-  background: #f1f5f9;
-  padding: 6px 10px;
-  border-radius: 10px;
-  display: inline-block;
+.msg {
+  margin-bottom: 10px;
+  padding: 10px 14px;
+  border-radius: 14px;
+  max-width: 80%;
+  font-size: .95rem;
 }
 
-#chatbot-input {
+.bot {
+  background: #e0e0e0;
+}
+
+.user {
+  background: #0a7cff;
+  color: white;
+  margin-left: auto;
+}
+
+#input {
   display: flex;
   border-top: 1px solid #ddd;
 }
-#chatbot-input input {
+
+#input input {
   flex: 1;
-  padding: 10px;
   border: none;
+  padding: 12px;
   outline: none;
+  font-size: .95rem;
 }
-#chatbot-input button {
-  background: #0f766e;
-  color: #fff;
+
+#input button {
+  background: #0a7cff;
+  color: white;
   border: none;
-  padding: 0 15px;
+  padding: 0 18px;
   cursor: pointer;
+  font-weight: bold;
 }
 </style>
 
-<button id="chatbot-btn">💬</button>
-
-<div id="chatbot-box">
-  <div id="chatbot-header">Atendimento Imobiliário</div>
-  <div id="chatbot-messages"></div>
-  <div id="chatbot-input">
-    <input type="text" id="chatbot-text" placeholder="Digite sua mensagem..." />
-    <button onclick="sendMessage()">➤</button>
+<div id="chatbot">
+  <header>Atendimento Imobiliário</header>
+  <div id="messages"></div>
+  <div id="input">
+    <input id="text" placeholder="Digite sua mensagem..." />
+    <button onclick="send()">Enviar</button>
   </div>
 </div>
 
 <script>
-const btn = document.getElementById("chatbot-btn");
-const box = document.getElementById("chatbot-box");
-const messagesDiv = document.getElementById("chatbot-messages");
-const input = document.getElementById("chatbot-text");
+const messagesDiv = document.getElementById("messages");
+const input = document.getElementById("text");
 
-let messages = [];
+// histórico começa VAZIO (correção importante)
+let conversation = [];
 
-btn.onclick = () => {
-  box.style.display = box.style.display === "flex" ? "none" : "flex";
-};
-
-function addMessage(text, type) {
+function addMessage(text, cls) {
   const div = document.createElement("div");
-  div.className = type === "user" ? "msg-user" : "msg-bot";
-  div.innerHTML = `<span>${text}</span>`;
+  div.className = "msg " + cls;
+  div.innerText = text;
   messagesDiv.appendChild(div);
   messagesDiv.scrollTop = messagesDiv.scrollHeight;
 }
 
-async function sendMessage() {
+async function send() {
   const text = input.value.trim();
   if (!text) return;
 
   addMessage(text, "user");
-  messages.push({ role: "user", content: text });
+  conversation.push({ role: "user", content: text });
   input.value = "";
 
-  const res = await fetch("https://corretorvitorarceno.vitorguxta9706.workers.dev", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ messages })
-  });
+  try {
+    const res = await fetch("https://corretorvitorarceno.vitorguxta9706.workers.dev", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ messages: conversation })
+    });
 
-  const data = await res.json();
-  addMessage(data.reply, "bot");
-  messages.push({ role: "assistant", content: data.reply });
+    const data = await res.json();
+    addMessage(data.reply, "bot");
+    conversation.push({ role: "assistant", content: data.reply });
+
+  } catch (err) {
+    addMessage("Erro de conexão. Tente novamente.", "bot");
+  }
 }
 
+// enviar com ENTER
 input.addEventListener("keypress", e => {
-  if (e.key === "Enter") sendMessage();
+  if (e.key === "Enter") send();
 });
+
+// mensagem inicial (alinhada com a IA)
+setTimeout(() => {
+  const firstMsg = "Olá! Sou o assistente do corretor Vitor Arceno 😊 Pode me informar seu nome completo?";
+  addMessage(firstMsg, "bot");
+  conversation.push({ role: "assistant", content: firstMsg });
+}, 500);
 </script>
 
 </body>
