@@ -2,27 +2,28 @@
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
-<title>Vitor Arceno | Imóveis em Balneário Piçarras</title>
+<title>Vitor Arceno – Imóveis em Balneário Piçarras</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<meta name="description" content="Imóveis em Balneário Piçarras com atendimento profissional.">
-<meta property="og:title" content="Vitor Arceno | Imóveis">
+<meta name="description" content="Imóveis em Balneário Piçarras com atendimento profissional">
+<meta property="og:title" content="Vitor Arceno – Imóveis">
 <meta property="og:type" content="website">
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <style>
-body{margin:0;font-family:Inter,Arial;background:#0e0e0e;color:#fff}
-header{padding:40px;text-align:center}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px;padding:40px}
-.card{background:#161616;border-radius:16px;overflow:hidden;cursor:pointer}
+:root{--green:#00ff88;--bg:#0e0e0e;--card:#161616}
+body{margin:0;font-family:Inter,Arial;background:var(--bg);color:#fff}
+header{height:100vh;background:#000;display:flex;align-items:center;justify-content:center;text-align:center}
+button{background:var(--green);border:none;padding:14px 28px;border-radius:30px;font-weight:bold;cursor:pointer}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:30px;padding:60px}
+.card{background:var(--card);border-radius:20px;overflow:hidden;cursor:pointer}
 .card img{width:100%;height:200px;object-fit:cover}
-.card div{padding:20px}
-button{padding:12px 20px;border:none;border-radius:10px;background:#00ff88;font-weight:bold;cursor:pointer}
-#admin{display:none;background:#111;padding:30px;margin:40px;border-radius:20px}
+.card-body{padding:20px}
+#admin{display:none;background:#111;padding:40px;margin:40px;border-radius:20px}
 input,select{width:100%;padding:12px;margin:6px 0;border-radius:10px;border:none}
 #modal{position:fixed;inset:0;background:#000e;display:none;align-items:center;justify-content:center}
-#modal .box{background:#111;padding:30px;border-radius:20px;max-width:700px;width:95%}
+#modal .box{background:#111;padding:30px;border-radius:20px;max-width:800px;width:95%}
 .gallery img{width:100%;margin-bottom:10px;border-radius:10px}
 </style>
 </head>
@@ -30,9 +31,11 @@ input,select{width:100%;padding:12px;margin:6px 0;border-radius:10px;border:none
 <body>
 
 <header>
-  <h1>Vitor Arceno</h1>
-  <p>Especialista em imóveis em Balneário Piçarras</p>
-  <button onclick="login()">Área do Corretor</button>
+  <div>
+    <h1>Vitor Arceno</h1>
+    <p>Especialista em imóveis em Balneário Piçarras</p>
+    <button onclick="login()">Área do Corretor</button>
+  </div>
 </header>
 
 <section class="grid" id="lista"></section>
@@ -41,9 +44,9 @@ input,select{width:100%;padding:12px;margin:6px 0;border-radius:10px;border:none
 <h2>Painel do Corretor</h2>
 
 <input id="titulo" placeholder="Título">
-<input id="slug" placeholder="Slug (ex: ilhas-de-fiji)">
+<input id="slug" placeholder="Slug">
 <input id="bairro" placeholder="Bairro">
-<input id="tipo" placeholder="Tipo (Apartamento, Casa)">
+<input id="tipo" placeholder="Tipo">
 <input id="valor" placeholder="Valor">
 <input id="dorm" placeholder="Dormitórios">
 <input id="ban" placeholder="Banheiros">
@@ -52,7 +55,6 @@ input,select{width:100%;padding:12px;margin:6px 0;border-radius:10px;border:none
 <input type="file" id="fotos" multiple>
 
 <button onclick="salvar()">Salvar imóvel</button>
-
 <div id="gerenciar"></div>
 </section>
 
@@ -67,14 +69,14 @@ const supabase = supabaseJs.createClient(
 const lista = document.getElementById("lista");
 const modal = document.getElementById("modal");
 
-async function carregar() {
+async function carregarImoveis(){
   const { data } = await supabase.from("imoveis").select("*").order("created_at",{ascending:false});
-  lista.innerHTML = "";
-  data.forEach(i => {
-    lista.innerHTML += `
+  lista.innerHTML="";
+  data.forEach(i=>{
+    lista.innerHTML+=`
       <div class="card" onclick="abrir('${i.slug}')">
         <img src="${i.fotos[0]}">
-        <div>
+        <div class="card-body">
           <h3>${i.titulo}</h3>
           <p>${i.bairro} • ${i.tipo}</p>
           <strong>R$ ${Number(i.valor).toLocaleString()}</strong>
@@ -86,8 +88,7 @@ async function carregar() {
 async function abrir(slug){
   const { data } = await supabase.from("imoveis").select("*").eq("slug",slug).single();
   history.pushState({}, "", `/imovel/${slug}`);
-
-  modal.innerHTML = `
+  modal.innerHTML=`
     <div class="box">
       <h2>${data.titulo}</h2>
       <div class="gallery">
@@ -95,11 +96,10 @@ async function abrir(slug){
       </div>
       <p>${data.dormitorios} dorm • ${data.banheiros} ban • ${data.vagas} vagas</p>
       <p>${data.area} m²</p>
-      <p><strong>R$ ${Number(data.valor).toLocaleString()}</strong></p>
-      <a href="https://wa.me/5547920006793?text=Tenho interesse no ${data.titulo}" target="_blank">
+      <strong>R$ ${Number(data.valor).toLocaleString()}</strong><br><br>
+      <a href="https://wa.me/5547920006793" target="_blank">
         <button>WhatsApp</button>
-      </a>
-      <br><br>
+      </a><br><br>
       <button onclick="fechar()">Fechar</button>
     </div>`;
   modal.style.display="flex";
@@ -111,52 +111,50 @@ function fechar(){
 }
 
 async function login(){
-  const email = prompt("Email:");
-  const senha = prompt("Senha:");
-  const { error } = await supabase.auth.signInWithPassword({ email, password: senha });
-  if(error) return alert("Erro no login");
+  const email=prompt("Email");
+  const senha=prompt("Senha");
+  const { error } = await supabase.auth.signInWithPassword({email,password:senha});
+  if(error) return alert("Login inválido");
   document.getElementById("admin").style.display="block";
   carregarAdmin();
 }
 
 async function salvar(){
-  const files = fotos.files;
-  let urls = [];
-
-  for (let f of files){
-    const path = `${slug.value}/${Date.now()}-${f.name}`;
-    await supabase.storage.from("imoveis").upload(path, f);
+  const urls=[];
+  for(let f of fotos.files){
+    const path=`${slug.value}/${Date.now()}-${f.name}`;
+    await supabase.storage.from("imoveis").upload(path,f);
     const { data } = supabase.storage.from("imoveis").getPublicUrl(path);
     urls.push(data.publicUrl);
   }
 
   await supabase.from("imoveis").insert({
-    titulo: titulo.value,
-    slug: slug.value,
-    bairro: bairro.value,
-    tipo: tipo.value,
-    valor: valor.value,
-    dormitorios: dorm.value,
-    banheiros: ban.value,
-    vagas: vaga.value,
-    area: area.value,
-    fotos: urls
+    titulo:titulo.value,
+    slug:slug.value,
+    bairro:bairro.value,
+    tipo:tipo.value,
+    valor:valor.value,
+    dormitorios:dorm.value,
+    banheiros:ban.value,
+    vagas:vaga.value,
+    area:area.value,
+    fotos:urls
   });
 
   alert("Imóvel salvo");
-  carregar();
+  carregarImoveis();
   carregarAdmin();
 }
 
 async function excluir(id){
   await supabase.from("imoveis").delete().eq("id",id);
-  carregar();
+  carregarImoveis();
   carregarAdmin();
 }
 
 async function carregarAdmin(){
   const { data } = await supabase.from("imoveis").select("*");
-  gerenciar.innerHTML="<h3>Gerenciar imóveis</h3>";
+  gerenciar.innerHTML="<h3>Gerenciar</h3>";
   data.forEach(i=>{
     gerenciar.innerHTML+=`
       <p>${i.titulo}
@@ -164,8 +162,17 @@ async function carregarAdmin(){
   });
 }
 
-window.onload = () => {
-  carregar();
+async function checkAuth(){
+  const { data } = await supabase.auth.getUser();
+  if(data.user){
+    document.getElementById("admin").style.display="block";
+    carregarAdmin();
+  }
+}
+
+window.onload=()=>{
+  carregarImoveis();
+  checkAuth();
   const slug = location.pathname.split("/imovel/")[1];
   if(slug) abrir(slug);
 };
