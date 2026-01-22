@@ -5,13 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Vitor Arceno – Imóveis em Balneário Piçarras</title>
 
-  <!-- Ícones -->
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
 
   <style>
     :root {
       --neongreen: #00ff88;
-      --neongreen-dark: #00cc66;
       --dark: #111;
     }
 
@@ -22,315 +20,106 @@
     }
 
     body {
-      font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      font-family: "Segoe UI", Arial, sans-serif;
       background: var(--dark);
       color: #fff;
-      line-height: 1.5;
     }
 
-    .hero {
-      height: 100vh;
-      background: url("https://odd-ivory-amafrcm6wz.edgeone.app/picarras-2048x1152-1.jpeg") center/cover no-repeat;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      position: relative;
-    }
+    /* ===== CHATBOT ===== */
 
-    .hero::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: rgba(0,0,0,0.6);
-    }
-
-    .hero-content {
-      position: relative;
-      z-index: 2;
-    }
-
-    .btn-wa {
-      background: var(--neongreen);
-      color: #000;
-      font-size: 1.2rem;
-      padding: 14px 30px;
-      border-radius: 50px;
-      display: inline-block;
-      margin-top: 25px;
-      font-weight: 600;
-      text-decoration: none;
-    }
-
-    .side-card {
+    #chatbot {
       position: fixed;
-      top: 50%;
-      left: 20px;
-      transform: translateY(-50%);
-      width: 170px;
-      background: rgba(0, 0, 0, 0.8);
-      border: 1px solid var(--neongreen);
-      border-radius: 12px;
+      bottom: 20px;
+      right: 20px;
+      width: 330px;
+      height: 480px;
+      background: #0f0f0f;
+      border-radius: 18px;
+      box-shadow: 0 20px 40px rgba(0,0,0,.5);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      z-index: 99999;
+    }
+
+    #chatbot header {
+      background: linear-gradient(135deg, #00ff88, #00cc66);
+      color: #000;
       padding: 14px;
       text-align: center;
-      z-index: 10;
+      font-weight: 700;
     }
 
-    .side-card img {
-      width: 100%;
-      border-radius: 50%;
-      aspect-ratio: 1/1;
-      object-fit: cover;
-      border: 2px solid var(--neongreen);
+    #messages {
+      flex: 1;
+      padding: 14px;
+      overflow-y: auto;
+      background: radial-gradient(circle at top, #1f1f1f, #0d0d0d);
     }
 
-    section {
-      padding: 80px 20px;
-      max-width: 1100px;
-      margin: auto;
-    }
-
-    h2 {
-      text-align: center;
-      margin-bottom: 40px;
-    }
-
-    .cards {
-      display: grid;
-      gap: 30px;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    }
-
-    .card {
-      background: #1a1a1a;
-      border: 1px solid #333;
-      border-radius: 14px;
-      overflow: hidden;
-    }
-
-    .card img {
-      width: 100%;
-      height: 220px;
-      object-fit: cover;
-      display: block;
-    }
-
-    .card-body {
-      padding: 18px;
-    }
-
-    .card-body h3 {
-      color: var(--neongreen);
+    .msg {
+      max-width: 80%;
+      padding: 10px 14px;
       margin-bottom: 10px;
-      font-size: 1.2rem;
-    }
-
-    .card-body ul {
-      list-style: none;
-      color: #fff;
+      border-radius: 14px;
       font-size: 0.95rem;
-      line-height: 1.6;
+      line-height: 1.4;
+      white-space: pre-line;
     }
 
-    .btn-card {
-      display: block;
-      margin: 18px;
+    .bot {
+      background: #1f1f1f;
+      color: #fff;
+    }
+
+    .user {
       background: var(--neongreen);
       color: #000;
-      padding: 12px 0;
-      border-radius: 25px;
-      text-align: center;
-      font-weight: 600;
-      text-decoration: none;
+      margin-left: auto;
     }
 
-    footer {
+    #input {
+      display: flex;
+      padding: 10px;
       background: #000;
-      padding: 25px;
-      text-align: center;
-      font-size: 1.5rem;
+      border-top: 1px solid #222;
     }
 
-    footer a {
-      color: var(--neongreen);
-      margin: 0 15px;
-      text-decoration: none;
+    #input input {
+      flex: 1;
+      background: #111;
+      color: #fff;
+      border: none;
+      border-radius: 12px;
+      padding: 10px 14px;
+      outline: none;
     }
 
-    footer small {
-      display: block;
-      margin-top: 15px;
-      font-size: 0.85rem;
-      color: #666;
+    #input button {
+      margin-left: 10px;
+      background: var(--neongreen);
+      border: none;
+      color: #000;
+      font-weight: 700;
+      padding: 10px 18px;
+      border-radius: 12px;
+      cursor: pointer;
     }
 
-    @media(max-width: 900px) {
-      .side-card {
-        position: static;
-        transform: none;
-        margin: 20px auto;
-      }
+    #input button:hover {
+      background: #00cc66;
     }
   </style>
 </head>
 
 <body>
 
-  <aside class="side-card">
-    <img src="https://related-fuchsia-2tll7jftii.edgeone.app/Gemini_Generated_Image_rysid4rysid4rysi.png">
-    <p><strong>Vitor Arceno</strong><br>Corretor de Imóveis<br>Balneário Piçarras</p>
-  </aside>
-
-  <header class="hero">
-    <div class="hero-content">
-      <h1>Vitor Arceno</h1>
-      <p>Corretor de Imóveis – Balneário Piçarras</p>
-      <a class="btn-wa" href="https://wa.me/5547920006793?text=Olá,%20quero%20comprar%20um%20imóvel">
-        Quero comprar um imóvel
-      </a>
-    </div>
-  </header>
-
-  <section>
-    <h2>Imóveis em destaque</h2>
-
-    <div class="cards">
-
-      <div class="card">
-        <img src="https://valuable-amethyst-iftgnzkoza.edgeone.app/WhatsApp%20Image%202026-01-21%20at%2014.36.07.jpeg">
-        <div class="card-body">
-          <h3>Ilhas de Fiji</h3>
-          <ul>
-            <li>2 dormitórios (2 suítes)</li>
-            <li>3 banheiros</li>
-            <li>1 vaga</li>
-            <li>78,85 m²</li>
-          </ul>
-        </div>
-        <a class="btn-card" href="https://wa.me/5547920006793?text=Olá,%20quero%20saber%20mais%20sobre%20o%20Residencial%20Ilhas%20de%20Fiji">Saber mais</a>
-      </div>
-
-      <div class="card">
-        <img src="https://outer-crimson-f2ijobxdpt.edgeone.app/Gemini_Generated_Image_uym46vuym46vuym4.png">
-        <div class="card-body">
-          <h3>Residencial Mayorca</h3>
-          <ul>
-            <li>2 dormitórios (1 suíte)</li>
-            <li>2 banheiros</li>
-            <li>1 vaga</li>
-            <li>60,86 m²</li>
-          </ul>
-        </div>
-        <a class="btn-card" href="https://wa.me/5547920006793?text=Olá,%20quero%20saber%20mais%20sobre%20o%20Residencial%20Mayorca">Saber mais</a>
-      </div>
-
-    </div>
-  </section>
-
-  <footer>
-    <a href="https://wa.me/5547920006793"><i class="fab fa-whatsapp"></i></a>
-    <a href="mailto:vitor_arceno@hotmail.com"><i class="fas fa-envelope"></i></a>
-    <a href="https://instagram.com/vitor_arceno_" target="_blank"><i class="fab fa-instagram"></i></a>
-
-    <small>© 2026 Vitor Arceno — Todos os direitos reservados.</small>
-  </footer>
-
-<!-- CHATBOT VITOR ARCENO -->
-<style>
-:root {
-  --green: #00ff88;
-  --dark: #0f0f0f;
-  --dark2: #1a1a1a;
-}
-
-#chatbot {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  width: 330px;
-  height: 480px;
-  background: var(--dark);
-  border-radius: 18px;
-  box-shadow: 0 20px 40px rgba(0,0,0,.5);
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
-  z-index: 99999;
-  font-family: "Segoe UI", Arial, sans-serif;
-}
-
-#chatbot header {
-  background: linear-gradient(135deg, #00ff88, #00cc66);
-  color: #000;
-  padding: 14px;
-  text-align: center;
-  font-weight: 700;
-  font-size: 1.05rem;
-}
-
-#messages {
-  flex: 1;
-  padding: 14px;
-  overflow-y: auto;
-  background: radial-gradient(circle at top, #1f1f1f, #0d0d0d);
-}
-
-.msg {
-  max-width: 80%;
-  padding: 10px 14px;
-  margin-bottom: 10px;
-  border-radius: 14px;
-  font-size: 0.95rem;
-  line-height: 1.4;
-}
-
-.bot {
-  background: #1f1f1f;
-  color: #fff;
-}
-
-.user {
-  background: var(--green);
-  color: #000;
-  margin-left: auto;
-}
-
-#input {
-  display: flex;
-  padding: 10px;
-  background: #000;
-  border-top: 1px solid #222;
-}
-
-#input input {
-  flex: 1;
-  background: #111;
-  color: #fff;
-  border: none;
-  border-radius: 12px;
-  padding: 10px 14px;
-  outline: none;
-}
-
-#input button {
-  margin-left: 10px;
-  background: var(--green);
-  border: none;
-  color: #000;
-  font-weight: 700;
-  padding: 10px 18px;
-  border-radius: 12px;
-  cursor: pointer;
-}
-
-#input button:hover {
-  background: #00cc66;
-}
-</style>
-
+<!-- CHATBOT -->
 <div id="chatbot">
   <header>Atendimento Imobiliário</header>
+
   <div id="messages"></div>
+
   <div id="input">
     <input id="text" placeholder="Digite sua mensagem..." />
     <button onclick="send()">Enviar</button>
@@ -338,25 +127,25 @@
 </div>
 
 <script>
-const messages = document.getElementById("messages");
-const input = document.getElementById("text");
+const messagesEl = document.getElementById("messages");
+const inputEl = document.getElementById("text");
 
-let conversation = [];
+let conversation = []; // COMEÇA VAZIO — CORRETO ✅
 
 function addMessage(text, cls) {
   const div = document.createElement("div");
   div.className = "msg " + cls;
   div.textContent = text;
-  messages.appendChild(div);
-  messages.scrollTop = messages.scrollHeight;
+  messagesEl.appendChild(div);
+  messagesEl.scrollTop = messagesEl.scrollHeight;
 }
 
 async function send() {
-  const text = input.value.trim();
+  const text = inputEl.value.trim();
   if (!text) return;
 
   addMessage(text, "user");
-  input.value = "";
+  inputEl.value = "";
 
   conversation.push({ role: "user", content: text });
 
@@ -370,27 +159,18 @@ async function send() {
       }
     );
 
-    if (!res.ok) throw new Error("Falha na conexão");
+    if (!res.ok) throw new Error("Erro de conexão");
 
     const data = await res.json();
-
     if (!data.reply) throw new Error("Resposta inválida");
 
     addMessage(data.reply, "bot");
     conversation.push({ role: "assistant", content: data.reply });
 
-  } catch (e) {
+  } catch (err) {
     addMessage("⚠️ Erro de conexão. Tente novamente.", "bot");
   }
 }
-
-// Mensagem inicial
-setTimeout(() => {
-  const msg =
-    "Olá! Sou o assistente do corretor Vitor Arceno 😊\n" +
-    "Para começar, pode me informar seu nome completo?";
-  addMessage(msg, "bot");
-}, 600);
 </script>
 <!-- FIM CHATBOT -->
 
