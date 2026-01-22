@@ -1,8 +1,3 @@
-<!-- ============================= -->
-<!-- ARQUIVO 1: index.html        -->
-<!-- Página principal premium     -->
-<!-- ============================= -->
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -16,16 +11,16 @@
   <meta name="keywords" content="corretor Balneário Piçarras, imóveis Piçarras, apartamento na planta, comprar apartamento SC" />
   <meta name="author" content="Vitor Arceno" />
 
-  <!-- Open Graph (melhora compartilhamento no WhatsApp e redes sociais) -->
+  <!-- Open Graph -->
   <meta property="og:title" content="Vitor Arceno | Imóveis em Balneário Piçarras" />
   <meta property="og:description" content="Confira imóveis selecionados e fale direto comigo no WhatsApp." />
   <meta property="og:image" content="https://odd-ivory-amafrcm6wz.edgeone.app/picarras-2048x1152-1.jpeg" />
   <meta property="og:type" content="website" />
 
-  <!-- Ícones Font Awesome -->
+  <!-- Ícones -->
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
 
-  <!-- Google Fonts -->
+  <!-- Fonte -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 
   <style>
@@ -46,6 +41,32 @@
       color: var(--text);
       line-height: 1.6;
     }
+
+    /* FOTO PERFIL FIXA */
+    .side-card {
+      position: fixed;
+      top: 50%;
+      left: 20px;
+      transform: translateY(-50%);
+      width: 180px;
+      background: rgba(0,0,0,0.85);
+      border: 1px solid var(--primary);
+      border-radius: 16px;
+      padding: 15px;
+      text-align: center;
+      z-index: 20;
+    }
+
+    .side-card img {
+      width: 100%;
+      aspect-ratio: 1/1;
+      object-fit: cover;
+      border-radius: 50%;
+      border: 2px solid var(--primary);
+      margin-bottom: 10px;
+    }
+
+    .side-card p { font-size: 0.85rem; color: #ccc; }
 
     /* HERO */
     .hero {
@@ -72,16 +93,6 @@
       padding: 20px;
     }
 
-    .hero h1 {
-      font-size: 3rem;
-      margin-bottom: 10px;
-    }
-
-    .hero p {
-      color: var(--muted);
-      font-size: 1.2rem;
-    }
-
     .btn-primary {
       display: inline-block;
       margin-top: 30px;
@@ -94,46 +105,12 @@
       transition: 0.3s ease;
     }
 
-    .btn-primary:hover {
-      background: var(--primary-dark);
-      transform: scale(1.05);
-    }
+    .btn-primary:hover { background: var(--primary-dark); transform: scale(1.05); }
 
-    /* CAPTURA DE LEADS */
-    .lead-box {
-      background: linear-gradient(135deg, #00ff8844, #000);
-      padding: 50px 20px;
-      text-align: center;
-    }
-
-    .lead-box h2 { margin-bottom: 20px; }
-
-    .lead-form {
-      max-width: 500px;
-      margin: auto;
-      display: grid;
-      gap: 15px;
-    }
-
-    .lead-form input {
-      padding: 14px;
-      border-radius: 8px;
-      border: none;
-      font-size: 1rem;
-    }
-
-    .lead-form button {
-      padding: 14px;
-      background: var(--primary);
-      border: none;
-      font-weight: bold;
-      border-radius: 30px;
-      cursor: pointer;
-    }
-
-    /* CARDS PREMIUM */
+    /* SEÇÕES */
     section { padding: 80px 20px; max-width: 1200px; margin: auto; }
 
+    /* CARDS */
     .cards {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -146,6 +123,7 @@
       overflow: hidden;
       transition: 0.4s ease;
       box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+      animation: fadeUp 0.6s ease;
     }
 
     .card:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(0,255,136,0.2); }
@@ -178,117 +156,170 @@
       text-decoration: none;
     }
 
-    /* RODAPÉ */
-    footer {
-      background: #000;
-      text-align: center;
-      padding: 30px 10px;
+    /* FORMULÁRIO ADMIN */
+    .admin-box {
+      background: #111;
+      border: 1px solid #222;
+      border-radius: 20px;
+      padding: 30px;
+      margin-top: 50px;
     }
 
-    footer a { color: var(--primary); margin: 0 15px; font-size: 1.5rem; }
+    .admin-box h2 { margin-bottom: 20px; }
 
+    .admin-form { display: grid; gap: 15px; }
+
+    .admin-form input { padding: 12px; border-radius: 10px; border: none; font-size: 1rem; }
+
+    .admin-form button { padding: 14px; background: var(--primary); border: none; border-radius: 30px; font-weight: bold; cursor: pointer; }
+
+    /* MODAL IMÓVEL */
+    .modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.85);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 50;
+      padding: 20px;
+    }
+
+    .modal-content {
+      background: #111;
+      border-radius: 20px;
+      max-width: 600px;
+      width: 100%;
+      padding: 30px;
+      animation: fadeUp 0.4s ease;
+    }
+
+    .modal-content img { width: 100%; border-radius: 15px; margin-bottom: 20px; }
+
+    .close { float: right; font-size: 1.5rem; cursor: pointer; color: var(--primary); }
+
+    /* RODAPÉ */
+    footer { background: #000; text-align: center; padding: 30px 10px; }
+    footer a { color: var(--primary); margin: 0 15px; font-size: 1.5rem; }
     footer small { display: block; margin-top: 15px; color: #555; }
 
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+    @media(max-width:900px){ .side-card{ position: static; transform:none; margin:20px auto; } }
   </style>
 </head>
 <body>
+
+  <!-- PERFIL -->
+  <aside class="side-card">
+    <img src="https://related-fuchsia-2tll7jftii.edgeone.app/Gemini_Generated_Image_rysid4rysid4rysi.png" alt="Vitor Arceno">
+    <p><strong>Vitor Arceno</strong><br>Corretor de Imóveis<br>Balneário Piçarras</p>
+  </aside>
 
   <!-- HERO -->
   <header class="hero">
     <div class="hero-content">
       <h1>Vitor Arceno</h1>
       <p>Corretor de imóveis em Balneário Piçarras</p>
-      <a class="btn-primary" href="https://wa.me/5547920006793?text=Olá,%20quero%20comprar%20um%20imóvel">Falar no WhatsApp</a>
+      <a class="btn-primary" href="https://wa.me/5547920006793?text=Olá,%20quero%20comprar%20um%20imóvel">Quero comprar um imóvel</a>
     </div>
   </header>
 
-  <!-- CARDS -->
+  <!-- LISTAGEM -->
   <section>
     <h2 style="text-align:center;margin-bottom:40px">Imóveis em destaque</h2>
-
-    <div class="cards">
-
-      <div class="card">
-        <img src="https://valuable-amethyst-iftgnzkoza.edgeone.app/WhatsApp%20Image%202026-01-21%20at%2014.36.07.jpeg">
-        <div class="card-body">
-          <h3>Ilhas de Fiji</h3>
-          <div class="details">
-            <div><i class="fa-solid fa-bed"></i> 2 dormitórios</div>
-            <div><i class="fa-solid fa-shower"></i> 3 banheiros</div>
-            <div><i class="fa-solid fa-car"></i> 1 vaga</div>
-            <div><i class="fa-solid fa-ruler-combined"></i> 78,85 m²</div>
-          </div>
-          <a class="btn-card" href="imovel-fiji.html">Ver imóvel</a>
-        </div>
-      </div>
-
-      <div class="card">
-        <img src="https://outer-crimson-f2ijobxdpt.edgeone.app/Gemini_Generated_Image_uym46vuym46vuym4.png">
-        <div class="card-body">
-          <h3>Residencial Mayorca</h3>
-          <div class="details">
-            <div><i class="fa-solid fa-bed"></i> 2 dormitórios</div>
-            <div><i class="fa-solid fa-shower"></i> 2 banheiros</div>
-            <div><i class="fa-solid fa-car"></i> 1 vaga</div>
-            <div><i class="fa-solid fa-ruler-combined"></i> 60,86 m²</div>
-          </div>
-          <a class="btn-card" href="imovel-mayorca.html">Ver imóvel</a>
-        </div>
-      </div>
-
-    </div>
+    <div class="cards" id="cards"></div>
   </section>
 
-  <!-- CAPTURA DE LEADS -->
-  <section class="lead-box">
-    <h2>Quer receber oportunidades exclusivas?</h2>
-    <form class="lead-form">
-      <input type="text" placeholder="Seu nome" required>
-      <input type="email" placeholder="Seu e-mail" required>
-      <input type="tel" placeholder="Seu WhatsApp" required>
-      <button>Quero receber imóveis</button>
+  <!-- PAINEL PARA ADICIONAR IMÓVEIS -->
+  <section class="admin-box">
+    <h2>Adicionar novo imóvel (painel do corretor)</h2>
+    <form class="admin-form" onsubmit="addProperty(event)">
+      <input id="titulo" placeholder="Nome do imóvel" required>
+      <input id="imagem" placeholder="URL da imagem do imóvel" required>
+      <input id="dorm" placeholder="Dormitórios" required>
+      <input id="ban" placeholder="Banheiros" required>
+      <input id="vaga" placeholder="Vagas" required>
+      <input id="area" placeholder="Metragem (ex: 78,85 m²)" required>
+      <button>Adicionar imóvel ao site</button>
     </form>
   </section>
+
+  <!-- MODAL DETALHES -->
+  <div class="modal" id="modal">
+    <div class="modal-content" id="modalContent"></div>
+  </div>
 
   <!-- RODAPÉ -->
   <footer>
     <a href="https://wa.me/5547920006793"><i class="fab fa-whatsapp"></i></a>
     <a href="mailto:vitor_arceno@hotmail.com"><i class="fas fa-envelope"></i></a>
     <a href="https://instagram.com/vitor_arceno_" target="_blank"><i class="fab fa-instagram"></i></a>
-
     <small>© 2026 Vitor Arceno — Todos os direitos reservados.</small>
   </footer>
 
-</body>
-</html>
+  <script>
+    let properties = JSON.parse(localStorage.getItem('properties')) || [
+      { titulo: 'Ilhas de Fiji', imagem: 'https://valuable-amethyst-iftgnzkoza.edgeone.app/WhatsApp%20Image%202026-01-21%20at%2014.36.07.jpeg', dorm: '2 dormitórios', ban: '3 banheiros', vaga: '1 vaga', area: '78,85 m²' }
+    ];
 
+    function render(){
+      const cards = document.getElementById('cards');
+      cards.innerHTML = '';
+      properties.forEach((p, i) => {
+        cards.innerHTML += `
+          <div class="card" onclick="openModal(${i})">
+            <img src="${p.imagem}">
+            <div class="card-body">
+              <h3>${p.titulo}</h3>
+              <div class="details">
+                <div><i class="fa-solid fa-bed"></i> ${p.dorm}</div>
+                <div><i class="fa-solid fa-shower"></i> ${p.ban}</div>
+                <div><i class="fa-solid fa-car"></i> ${p.vaga}</div>
+                <div><i class="fa-solid fa-ruler-combined"></i> ${p.area}</div>
+              </div>
+              <div class="btn-card">Ver detalhes</div>
+            </div>
+          </div>`;
+      });
+    }
 
-<!-- ===================================== -->
-<!-- ARQUIVO 2: imovel-mayorca.html        -->
-<!-- Página individual de imóvel           -->
-<!-- ===================================== -->
+    function addProperty(e){
+      e.preventDefault();
+      properties.push({
+        titulo: titulo.value,
+        imagem: imagem.value,
+        dorm: dorm.value,
+        ban: ban.value,
+        vaga: vaga.value,
+        area: area.value
+      });
+      localStorage.setItem('properties', JSON.stringify(properties));
+      render();
+      e.target.reset();
+      alert('Imóvel adicionado com sucesso!');
+    }
 
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-  <meta charset="UTF-8">
-  <title>Residencial Mayorca | Vitor Arceno</title>
-  <meta name="description" content="Apartamento no Residencial Mayorca em Balneário Piçarras. Fale direto com o corretor no WhatsApp." />
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
-</head>
-<body style="background:#0e0e0e;color:#fff;font-family:Poppins;padding:40px">
+    function openModal(i){
+      const p = properties[i];
+      modal.style.display = 'flex';
+      modalContent.innerHTML = `
+        <span class="close" onclick="closeModal()">&times;</span>
+        <h2>${p.titulo}</h2>
+        <img src="${p.imagem}">
+        <ul style="margin:15px 0;color:#ccc">
+          <li>${p.dorm}</li>
+          <li>${p.ban}</li>
+          <li>${p.vaga}</li>
+          <li>${p.area}</li>
+        </ul>
+        <a href="https://wa.me/5547920006793?text=Tenho%20interesse%20no%20imóvel:%20${encodeURIComponent(p.titulo)}" class="btn-primary">Falar no WhatsApp</a>`;
+    }
 
-  <h1>Residencial Mayorca</h1>
-  <img src="https://outer-crimson-f2ijobxdpt.edgeone.app/Gemini_Generated_Image_uym46vuym46vuym4.png" style="max-width:500px;border-radius:20px">
+    function closeModal(){ modal.style.display = 'none'; }
 
-  <ul>
-    <li>2 dormitórios (1 suíte)</li>
-    <li>2 banheiros</li>
-    <li>1 vaga</li>
-    <li>60,86 m²</li>
-  </ul>
-
-  <a href="https://wa.me/5547920006793?text=Tenho%20interesse%20no%20Residencial%20Mayorca" style="display:inline-block;margin-top:20px;padding:15px 30px;background:#00ff88;color:#000;border-radius:30px;text-decoration:none;font-weight:bold">Falar no WhatsApp</a>
+    render();
+  </script>
 
 </body>
 </html>
