@@ -6,22 +6,20 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <meta name="description" content="Imóveis em Balneário Piçarras com atendimento profissional">
-<meta property="og:title" content="Vitor Arceno – Imóveis">
-<meta property="og:type" content="website">
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <style>
 :root{--green:#00ff88;--bg:#0e0e0e;--card:#161616}
 body{margin:0;font-family:Inter,Arial;background:var(--bg);color:#fff}
-header{height:100vh;background:#000;display:flex;align-items:center;justify-content:center;text-align:center}
+header{min-height:60vh;display:flex;align-items:center;justify-content:center;text-align:center}
 button{background:var(--green);border:none;padding:14px 28px;border-radius:30px;font-weight:bold;cursor:pointer}
 .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:30px;padding:60px}
 .card{background:var(--card);border-radius:20px;overflow:hidden;cursor:pointer}
 .card img{width:100%;height:200px;object-fit:cover}
 .card-body{padding:20px}
 #admin{display:none;background:#111;padding:40px;margin:40px;border-radius:20px}
-input,select{width:100%;padding:12px;margin:6px 0;border-radius:10px;border:none}
+input{width:100%;padding:12px;margin:6px 0;border-radius:10px;border:none}
 #modal{position:fixed;inset:0;background:#000e;display:none;align-items:center;justify-content:center}
 #modal .box{background:#111;padding:30px;border-radius:20px;max-width:800px;width:95%}
 .gallery img{width:100%;margin-bottom:10px;border-radius:10px}
@@ -35,33 +33,35 @@ input,select{width:100%;padding:12px;margin:6px 0;border-radius:10px;border:none
     <h1>Vitor Arceno</h1>
     <p>Especialista em imóveis em Balneário Piçarras</p>
     <button onclick="login()">Área do Corretor</button>
+    <p style="margin-top:20px;opacity:.6">⬇️ Veja os imóveis abaixo</p>
   </div>
 </header>
 
 <section class="grid" id="lista"></section>
 
 <section id="admin">
-<h2>Painel do Corretor</h2>
+  <h2>Painel do Corretor</h2>
 
-<input id="titulo" placeholder="Título">
-<input id="slug" placeholder="Slug">
-<input id="bairro" placeholder="Bairro">
-<input id="tipo" placeholder="Tipo">
-<input id="valor" placeholder="Valor">
-<input id="dorm" placeholder="Dormitórios">
-<input id="ban" placeholder="Banheiros">
-<input id="vaga" placeholder="Vagas">
-<input id="area" placeholder="Área m²">
-<input type="file" id="fotos" multiple>
+  <input id="titulo" placeholder="Título">
+  <input id="slug" placeholder="Slug">
+  <input id="bairro" placeholder="Bairro">
+  <input id="tipo" placeholder="Tipo">
+  <input id="valor" placeholder="Valor">
+  <input id="dorm" placeholder="Dormitórios">
+  <input id="ban" placeholder="Banheiros">
+  <input id="vaga" placeholder="Vagas">
+  <input id="area" placeholder="Área m²">
+  <input type="file" id="fotos" multiple>
 
-<button onclick="salvar()">Salvar imóvel</button>
-<div id="gerenciar"></div>
+  <button onclick="salvar()">Salvar imóvel</button>
+  <div id="gerenciar"></div>
 </section>
 
 <div id="modal"></div>
 
 <script>
-const supabase = supabaseJs.createClient(
+/* ✅ SUPABASE CORRETO */
+const supabaseClient = supabase.createClient(
   "https://zctvqhghwrvbksjohjxv.supabase.co",
   "sb_publishable_QXsGONCWjyvuXUZRljGwsA_tB2smuY7"
 );
@@ -69,8 +69,19 @@ const supabase = supabaseJs.createClient(
 const lista = document.getElementById("lista");
 const modal = document.getElementById("modal");
 
+/* ✅ CARREGA IMÓVEIS SEM LOGIN */
 async function carregarImoveis(){
-  const { data } = await supabase.from("imoveis").select("*").order("created_at",{ascending:false});
+  const { data, error } = await supabaseClient
+    .from("imoveis")
+    .select("*")
+    .order("created_at",{ascending:false});
+
+  if(error){
+    console.error(error);
+    lista.innerHTML="<p>Erro ao carregar imóveis</p>";
+    return;
+  }
+
   lista.innerHTML="";
   data.forEach(i=>{
     lista.innerHTML+=`
@@ -86,7 +97,12 @@ async function carregarImoveis(){
 }
 
 async function abrir(slug){
-  const { data } = await supabase.from("imoveis").select("*").eq("slug",slug).single();
+  const { data } = await supabaseClient
+    .from("imoveis")
+    .select("*")
+    .eq("slug",slug)
+    .single();
+
   history.pushState({}, "", `/imovel/${slug}`);
   modal.innerHTML=`
     <div class="box">
@@ -110,25 +126,35 @@ function fechar(){
   history.pushState({}, "", "/");
 }
 
+/* ✅ LOGIN */
 async function login(){
-  const email=prompt("Email");
-  const senha=prompt("Senha");
-  const { error } = await supabase.auth.signInWithPassword({email,password:senha});
-  if(error) return alert("Login inválido");
+  const email = prompt("Email");
+  const senha = prompt("Senha");
+
+  const { error } = await supabaseClient.auth.signInWithPassword({
+    email,password:senha
+  });
+
+  if(error){
+    alert("Login inválido");
+    return;
+  }
+
   document.getElementById("admin").style.display="block";
   carregarAdmin();
 }
 
+/* ✅ SALVAR */
 async function salvar(){
   const urls=[];
   for(let f of fotos.files){
     const path=`${slug.value}/${Date.now()}-${f.name}`;
-    await supabase.storage.from("imoveis").upload(path,f);
-    const { data } = supabase.storage.from("imoveis").getPublicUrl(path);
+    await supabaseClient.storage.from("imoveis").upload(path,f);
+    const { data } = supabaseClient.storage.from("imoveis").getPublicUrl(path);
     urls.push(data.publicUrl);
   }
 
-  await supabase.from("imoveis").insert({
+  await supabaseClient.from("imoveis").insert({
     titulo:titulo.value,
     slug:slug.value,
     bairro:bairro.value,
@@ -147,13 +173,13 @@ async function salvar(){
 }
 
 async function excluir(id){
-  await supabase.from("imoveis").delete().eq("id",id);
+  await supabaseClient.from("imoveis").delete().eq("id",id);
   carregarImoveis();
   carregarAdmin();
 }
 
 async function carregarAdmin(){
-  const { data } = await supabase.from("imoveis").select("*");
+  const { data } = await supabaseClient.from("imoveis").select("*");
   gerenciar.innerHTML="<h3>Gerenciar</h3>";
   data.forEach(i=>{
     gerenciar.innerHTML+=`
@@ -163,16 +189,18 @@ async function carregarAdmin(){
 }
 
 async function checkAuth(){
-  const { data } = await supabase.auth.getUser();
+  const { data } = await supabaseClient.auth.getUser();
   if(data.user){
     document.getElementById("admin").style.display="block";
     carregarAdmin();
   }
 }
 
+/* ✅ START */
 window.onload=()=>{
   carregarImoveis();
   checkAuth();
+
   const slug = location.pathname.split("/imovel/")[1];
   if(slug) abrir(slug);
 };
