@@ -3,280 +3,208 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
   <title>Vitor Arceno – Corretor de Imóveis em Balneário Piçarras</title>
 
-  <!-- SEO Avançado -->
-  <meta name="description" content="Corretor de imóveis em Balneário Piçarras. Apartamentos, lançamentos e oportunidades exclusivas. Atendimento personalizado via WhatsApp." />
-  <meta name="keywords" content="corretor Balneário Piçarras, imóveis Piçarras, apartamentos na praia, comprar imóvel SC" />
+  <!-- SEO avançado -->
+  <meta name="description" content="Corretor de imóveis em Balneário Piçarras. Apartamentos, lançamentos e oportunidades exclusivas. Atendimento profissional via WhatsApp." />
+  <meta name="keywords" content="corretor Balneário Piçarras, imóveis Piçarras, comprar apartamento SC, imóveis na praia" />
   <meta name="author" content="Vitor Arceno" />
 
-  <!-- Open Graph (melhora compartilhamento no WhatsApp e redes) -->
+  <!-- Open Graph -->
   <meta property="og:title" content="Vitor Arceno – Imóveis em Balneário Piçarras" />
   <meta property="og:description" content="Encontre imóveis exclusivos em Balneário Piçarras com atendimento profissional." />
   <meta property="og:type" content="website" />
 
+  <!-- Schema.org corretor -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "RealEstateAgent",
+    "name": "Vitor Arceno",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Balneário Piçarras",
+      "addressRegion": "SC",
+      "addressCountry": "BR"
+    },
+    "url": "https://seusite.com.br",
+    "sameAs": ["https://instagram.com/vitor_arceno_"]
+  }
+  </script>
+
   <!-- Ícones -->
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
 
+  <!-- Manifest PWA gerado via JS -->
+
   <style>
-    :root {
-      --green: #00ff88;
-      --green-dark: #00cc66;
-      --bg: #0e0e0e;
-      --card: #161616;
-      --text: #eaeaea;
-      --muted: #aaa;
+    :root{
+      --green:#00ff88;--green-dark:#00cc66;--bg:#0e0e0e;--card:#161616;--text:#eaeaea;--muted:#aaa;
     }
+    *{margin:0;padding:0;box-sizing:border-box}
+    body{font-family:Inter,Arial,sans-serif;background:var(--bg);color:var(--text)}
 
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-
-    body {
-      font-family: Inter, Arial, sans-serif;
-      background: var(--bg);
-      color: var(--text);
-    }
-
-    /* FOTO PERFIL LATERAL */
-    .profile {
-      position: fixed;
-      top: 50%;
-      left: 20px;
-      transform: translateY(-50%);
-      background: #000000cc;
-      border: 1px solid var(--green);
-      padding: 14px;
-      border-radius: 16px;
-      text-align: center;
-      width: 180px;
-      z-index: 10;
-    }
-
-    .profile img {
-      width: 120px;
-      height: 120px;
-      border-radius: 50%;
-      object-fit: cover;
-      border: 2px solid var(--green);
-    }
-
-    .profile p { font-size: 0.85rem; margin-top: 10px; color: var(--muted); }
+    /* PERFIL */
+    .profile{position:fixed;top:50%;left:20px;transform:translateY(-50%);background:#000c;border:1px solid var(--green);padding:14px;border-radius:16px;text-align:center;width:180px;z-index:10}
+    .profile img{width:120px;height:120px;border-radius:50%;object-fit:cover;border:2px solid var(--green)}
+    .profile p{font-size:.85rem;margin-top:10px;color:var(--muted)}
 
     /* HERO */
-    header {
-      height: 100vh;
-      background: url('https://odd-ivory-amafrcm6wz.edgeone.app/picarras-2048x1152-1.jpeg') center/cover no-repeat;
-      position: relative;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-    }
+    header{height:100vh;background:url('https://odd-ivory-amafrcm6wz.edgeone.app/picarras-2048x1152-1.jpeg') center/cover no-repeat;position:relative;display:flex;align-items:center;justify-content:center;text-align:center}
+    header::after{content:'';position:absolute;inset:0;background:rgba(0,0,0,.65)}
+    .hero{position:relative;z-index:2;max-width:700px;padding:20px}
+    .hero a{display:inline-block;margin-top:25px;background:var(--green);color:#000;padding:14px 32px;border-radius:40px;font-weight:bold;text-decoration:none}
 
-    header::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: rgba(0,0,0,0.65);
-    }
-
-    .hero {
-      position: relative;
-      z-index: 2;
-      max-width: 700px;
-      padding: 20px;
-    }
-
-    .hero h1 { font-size: 3rem; }
-
-    .hero a {
-      display: inline-block;
-      margin-top: 25px;
-      background: var(--green);
-      color: #000;
-      padding: 14px 32px;
-      border-radius: 40px;
-      font-weight: bold;
-      text-decoration: none;
-    }
-
-    section { max-width: 1200px; margin: auto; padding: 80px 20px; }
-
-    h2 { text-align: center; margin-bottom: 40px; }
+    section{max-width:1200px;margin:auto;padding:80px 20px}
+    h2{text-align:center;margin-bottom:40px}
 
     /* CARDS */
-    .grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(280px,1fr)); gap: 30px; }
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:30px}
+    .card{background:var(--card);border-radius:18px;overflow:hidden;border:1px solid #222;transition:.3s;cursor:pointer}
+    .card:hover{transform:translateY(-6px);box-shadow:0 10px 30px #000;border-color:var(--green)}
+    .card img{width:100%;height:200px;object-fit:cover}
+    .card-body{padding:20px}
+    .icons{display:grid;gap:8px;font-size:.9rem;color:var(--muted)}
+    .icons i{color:var(--green);margin-right:6px}
 
-    .card {
-      background: var(--card);
-      border-radius: 18px;
-      overflow: hidden;
-      border: 1px solid #222;
-      transition: transform .3s ease, box-shadow .3s ease;
-      cursor: pointer;
-    }
+    /* ADMIN */
+    #admin{background:#0b0b0b;border:1px solid #222;padding:30px;border-radius:20px;margin-top:80px}
+    #admin input,#admin button{width:100%;padding:12px;margin:6px 0;border-radius:10px;border:none}
+    #admin button{background:var(--green);font-weight:bold;cursor:pointer}
 
-    .card:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 10px 30px #000;
-      border-color: var(--green);
-    }
+    /* MODAL DETALHE */
+    #detalhe{position:fixed;inset:0;background:#000e;display:none;align-items:center;justify-content:center;z-index:50}
+    #detalhe .box{background:#111;padding:30px;border-radius:20px;max-width:600px;width:90%}
 
-    .card img { width: 100%; height: 200px; object-fit: cover; }
+    footer{text-align:center;background:#000;padding:30px;color:#777;font-size:.9rem}
+    footer i{color:var(--green);margin:0 6px}
 
-    .card-body { padding: 20px; }
-
-    .icons { display: grid; gap: 8px; font-size: 0.9rem; color: var(--muted); }
-
-    .icons i { color: var(--green); margin-right: 6px; }
-
-    /* PAINEL ADMIN */
-    #admin {
-      background: #0b0b0b;
-      border: 1px solid #222;
-      padding: 30px;
-      border-radius: 20px;
-      margin-top: 80px;
-    }
-
-    #admin input, #admin button {
-      width: 100%; padding: 12px; margin: 8px 0; border-radius: 10px; border: none;
-    }
-
-    #admin button { background: var(--green); font-weight: bold; cursor: pointer; }
-
-    footer {
-      text-align: center;
-      background: #000;
-      padding: 30px;
-      color: #777;
-      font-size: 0.9rem;
-    }
-
-    footer i { color: var(--green); margin: 0 6px; }
-
-    @media(max-width:900px){
-      .profile{ position: static; transform:none; margin:20px auto; }
-    }
+    @media(max-width:900px){.profile{position:static;transform:none;margin:20px auto}}
   </style>
 </head>
 <body>
 
-  <!-- FOTO PERFIL -->
-  <div class="profile">
-    <img src="https://related-fuchsia-2tll7jftii.edgeone.app/Gemini_Generated_Image_rysid4rysid4rysi.png" />
-    <p><strong>Vitor Arceno</strong><br>Corretor de Imóveis<br>Balneário Piçarras</p>
+<div class="profile">
+  <img src="https://related-fuchsia-2tll7jftii.edgeone.app/Gemini_Generated_Image_rysid4rysid4rysi.png">
+  <p><strong>Vitor Arceno</strong><br>Corretor de Imóveis<br>Balneário Piçarras</p>
+</div>
+
+<header>
+  <div class="hero">
+    <h1>Vitor Arceno</h1>
+    <p>Especialista em imóveis em Balneário Piçarras</p>
+    <a href="https://wa.me/5547920006793?text=Olá,%20quero%20comprar%20um%20imóvel">Quero comprar um imóvel</a>
+  </div>
+</header>
+
+<section>
+  <h2>Imóveis em destaque</h2>
+  <div class="grid" id="lista"></div>
+</section>
+
+<section>
+  <h2>Localização</h2>
+  <iframe src="https://www.google.com/maps?q=Balneário%20Piçarras&output=embed" width="100%" height="350" style="border-radius:20px;border:0"></iframe>
+</section>
+
+<section id="admin">
+  <h2>Painel do Corretor</h2>
+  <div id="login">
+    <input type="password" id="senha" placeholder="Senha de acesso">
+    <button onclick="entrar()">Entrar</button>
   </div>
 
-  <!-- HERO -->
-  <header>
-    <div class="hero">
-      <h1>Vitor Arceno</h1>
-      <p>Especialista em imóveis em Balneário Piçarras</p>
-      <a href="https://wa.me/5547920006793">Quero comprar um imóvel</a>
-    </div>
-  </header>
+  <div id="painel" style="display:none">
+    <input id="titulo" placeholder="Nome do imóvel">
+    <input id="slug" placeholder="Slug (ex: residencial-fiji)">
+    <input id="img" type="file">
+    <input id="dorm" placeholder="Dormitórios">
+    <input id="ban" placeholder="Banheiros">
+    <input id="vaga" placeholder="Vagas">
+    <input id="area" placeholder="Metragem">
+    <button onclick="salvar()">Salvar imóvel</button>
+    <div id="gerenciar"></div>
+  </div>
+</section>
 
-  <!-- IMÓVEIS -->
-  <section>
-    <h2>Imóveis em destaque</h2>
-    <div class="grid" id="lista"></div>
-  </section>
+<div id="detalhe"></div>
 
-  <!-- PAINEL ADMIN COM SENHA -->
-  <section id="admin">
-    <h2>Painel do Corretor (restrito)</h2>
-    <div id="login">
-      <input type="password" id="senha" placeholder="Digite a senha" />
-      <button onclick="entrar()">Entrar</button>
-    </div>
-
-    <div id="painel" style="display:none">
-      <input id="titulo" placeholder="Nome do imóvel" />
-      <input id="img" type="file" />
-      <input id="dorm" placeholder="Dormitórios" />
-      <input id="ban" placeholder="Banheiros" />
-      <input id="vaga" placeholder="Vagas" />
-      <input id="area" placeholder="Metragem" />
-      <button onclick="salvar()">Salvar imóvel</button>
-    </div>
-  </section>
-
-  <!-- FOOTER -->
-  <footer>
-    <p>
-      <i class="fab fa-whatsapp"></i> (47) 92000-6793 &nbsp; | &nbsp;
-      <i class="fas fa-envelope"></i> vitor_arceno@hotmail.com &nbsp; | &nbsp;
-      <i class="fab fa-instagram"></i> @vitor_arceno_
-    </p>
-    <p style="margin-top:10px">© 2026 Vitor Arceno. Todos os direitos reservados.</p>
-  </footer>
+<footer>
+  <p>
+    <i class="fab fa-whatsapp"></i> (47) 92000-6793 |
+    <i class="fas fa-envelope"></i> vitor_arceno@hotmail.com |
+    <i class="fab fa-instagram"></i> @vitor_arceno_
+  </p>
+  <p style="margin-top:10px">© 2026 Vitor Arceno. Todos os direitos reservados.</p>
+</footer>
 
 <script>
+// PWA manifest dinâmico
+const manifest={name:"Imóveis Vitor Arceno",short_name:"Imóveis",start_url:"/",display:"standalone",background_color:"#000",theme_color:"#00ff88",icons:[]};
+const blob=new Blob([JSON.stringify(manifest)],{type:'application/json'});
+document.head.insertAdjacentHTML('beforeend',`<link rel="manifest" href="${URL.createObjectURL(blob)}">`);
+
+// Service Worker básico
+if('serviceWorker' in navigator){
+  const sw = `self.addEventListener('fetch',e=>{});`;
+  navigator.serviceWorker.register(URL.createObjectURL(new Blob([sw],{type:'text/javascript'})));
+}
+
 let dados = JSON.parse(localStorage.getItem('imoveis')) || [
-  {
-    titulo: 'Ilhas de Fiji',
-    img: 'https://valuable-amethyst-iftgnzkoza.edgeone.app/WhatsApp%20Image%202026-01-21%20at%2014.36.07.jpeg',
-    dorm: '2 dormitórios (2 suítes)',
-    ban: '3 banheiros',
-    vaga: '1 vaga',
-    area: '78,85 m²'
-  },
-  {
-    titulo: 'Residencial Mayorca',
-    img: 'https://outer-crimson-f2ijobxdpt.edgeone.app/Gemini_Generated_Image_uym46vuym46vuym4.png',
-    dorm: '2 dormitórios (1 suíte)',
-    ban: '2 banheiros',
-    vaga: '1 vaga',
-    area: '60,86 m²'
-  }
+  {slug:'ilhas-de-fiji',titulo:'Ilhas de Fiji',img:'https://valuable-amethyst-iftgnzkoza.edgeone.app/WhatsApp%20Image%202026-01-21%20at%2014.36.07.jpeg',dorm:'2 dormitórios (2 suítes)',ban:'3 banheiros',vaga:'1 vaga',area:'78,85 m²'},
+  {slug:'residencial-mayorca',titulo:'Residencial Mayorca',img:'https://outer-crimson-f2ijobxdpt.edgeone.app/Gemini_Generated_Image_uym46vuym46vuym4.png',dorm:'2 dormitórios (1 suíte)',ban:'2 banheiros',vaga:'1 vaga',area:'60,86 m²'}
 ];
 
 function render(){
-  const lista = document.getElementById('lista');
+  const lista=document.getElementById('lista');
   lista.innerHTML='';
-  dados.forEach((i,idx)=>{
+  dados.forEach(i=>{
     lista.innerHTML+=`
-    <div class="card">
-      <img src="${i.img}" />
-      <div class="card-body">
-        <h3>${i.titulo}</h3>
-        <div class="icons">
-          <div><i class="fas fa-bed"></i> ${i.dorm}</div>
-          <div><i class="fas fa-bath"></i> ${i.ban}</div>
-          <div><i class="fas fa-car"></i> ${i.vaga}</div>
-          <div><i class="fas fa-ruler-combined"></i> ${i.area}</div>
+      <div class="card" onclick="abrir('${i.slug}')">
+        <img src="${i.img}">
+        <div class="card-body">
+          <h3>${i.titulo}</h3>
+          <div class="icons">
+            <div><i class="fas fa-bed"></i> ${i.dorm}</div>
+            <div><i class="fas fa-bath"></i> ${i.ban}</div>
+            <div><i class="fas fa-car"></i> ${i.vaga}</div>
+            <div><i class="fas fa-ruler-combined"></i> ${i.area}</div>
+          </div>
         </div>
-      </div>
-    </div>`;
-  })
+      </div>`;
+  });
+  renderAdmin();
 }
-render();
 
-function entrar(){
-  if(document.getElementById('senha').value==='1234'){
-    document.getElementById('login').style.display='none';
-    document.getElementById('painel').style.display='block';
-  } else alert('Senha incorreta');
+function abrir(slug){
+  const i=dados.find(x=>x.slug===slug);
+  if(!i) return;
+  history.pushState({},'',`#/imovel/${slug}`);
+  detalhe.innerHTML=`<div class="box"><h2>${i.titulo}</h2><img src="${i.img}" style="width:100%;border-radius:15px;margin:15px 0"><p>${i.dorm} • ${i.ban} • ${i.vaga} • ${i.area}</p><br><a href="https://wa.me/5547920006793?text=Tenho%20interesse%20no%20${i.titulo}" style="color:#00ff88">Falar no WhatsApp</a><br><br><button onclick="fechar()">Fechar</button></div>`;
+  detalhe.style.display='flex';
 }
+function fechar(){detalhe.style.display='none'}
+
+function entrar(){if(senha.value==='1234'){login.style.display='none';painel.style.display='block'}else alert('Senha incorreta')}
 
 function salvar(){
-  const file = document.getElementById('img').files[0];
-  const reader = new FileReader();
-  reader.onload = () => {
-    dados.push({
-      titulo: titulo.value,
-      img: reader.result,
-      dorm: dorm.value,
-      ban: ban.value,
-      vaga: vaga.value,
-      area: area.value
-    });
-    localStorage.setItem('imoveis', JSON.stringify(dados));
+  const reader=new FileReader();
+  reader.onload=()=>{
+    dados.push({slug:slug.value,titulo:titulo.value,img:reader.result,dorm:dorm.value,ban:ban.value,vaga:vaga.value,area:area.value});
+    localStorage.setItem('imoveis',JSON.stringify(dados));
     render();
-  }
-  reader.readAsDataURL(file);
+  };
+  reader.readAsDataURL(img.files[0]);
 }
+
+function excluir(sl){dados=dados.filter(i=>i.slug!==sl);localStorage.setItem('imoveis',JSON.stringify(dados));render();}
+
+function renderAdmin(){
+  gerenciar.innerHTML='<h3>Gerenciar imóveis</h3>';
+  dados.forEach(i=>{gerenciar.innerHTML+=`<p>${i.titulo} <button onclick="excluir('${i.slug}')">Excluir</button></p>`})
+}
+
+render();
 </script>
 </body>
 </html>
