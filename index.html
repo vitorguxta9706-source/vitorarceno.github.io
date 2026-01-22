@@ -235,187 +235,142 @@
     <small>© 2026 Vitor Arceno — Todos os direitos reservados.</small>
   </footer>
 
-<!-- CHATBOT VITOR ARCENO -->
-<style>
-:root {
-  --green: #00ff88;
-  --dark: #0f0f0f;
-}
+  <!-- CHATBOT -->
+  <style>
+    #chatbot-btn {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #00ff88, #00cc66);
+      box-shadow: 0 15px 30px rgba(0,0,0,.6);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 99999;
+    }
+    #chatbot-btn i { font-size: 26px; color: #000; }
+    #chatbot {
+      position: fixed;
+      bottom: 100px;
+      right: 20px;
+      width: 340px;
+      height: 480px;
+      background: linear-gradient(180deg, #1a1a1a, #0b0b0b);
+      border-radius: 18px;
+      box-shadow: 0 25px 50px rgba(0,0,0,.7);
+      display: none;
+      flex-direction: column;
+      overflow: hidden;
+      z-index: 99999;
+    }
+    #chatbot header {
+      background: linear-gradient(135deg, #00ff88, #00cc66);
+      color: #000;
+      padding: 14px;
+      font-weight: 700;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    #chatbot header span { cursor: pointer; font-size: 20px; }
+    #messages {
+      flex: 1;
+      padding: 14px;
+      overflow-y: auto;
+      background: radial-gradient(circle at top, #1f1f1f, #0d0d0d);
+    }
+    .msg {
+      max-width: 80%;
+      padding: 10px 14px;
+      margin-bottom: 10px;
+      border-radius: 14px;
+      font-size: 0.95rem;
+    }
+    .bot { background: #1f1f1f; color: #fff; }
+    .user { background: #00ff88; color: #000; margin-left: auto; }
+    #input { display: flex; padding: 10px; background: #000; border-top: 1px solid #222; }
+    #input input {
+      flex: 1;
+      background: #111;
+      color: #fff;
+      border: none;
+      border-radius: 12px;
+      padding: 10px 14px;
+    }
+    #input button {
+      margin-left: 10px;
+      background: #00ff88;
+      border: none;
+      color: #000;
+      font-weight: 700;
+      padding: 10px 18px;
+      border-radius: 12px;
+      cursor: pointer;
+    }
+  </style>
 
-/* BOTÃO FLUTUANTE */
-#chatbot-btn {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  width: 64px;
-  height: 64px;
-  border-radius: 50%;
-  background: linear-gradient(135deg, #00ff88, #00cc66);
-  box-shadow: 0 15px 30px rgba(0,0,0,.6);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  z-index: 99999;
-}
-
-#chatbot-btn i {
-  font-size: 26px;
-  color: #000;
-}
-
-/* CARD DO CHAT */
-#chatbot {
-  position: fixed;
-  bottom: 100px;
-  right: 20px;
-  width: 340px;
-  height: 480px;
-  background: linear-gradient(180deg, #1a1a1a, #0b0b0b);
-  border-radius: 18px;
-  box-shadow: 0 25px 50px rgba(0,0,0,.7);
-  display: none;
-  flex-direction: column;
-  overflow: hidden;
-  z-index: 99999;
-}
-
-/* HEADER */
-#chatbot header {
-  background: linear-gradient(135deg, #00ff88, #00cc66);
-  color: #000;
-  padding: 14px;
-  font-weight: 700;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-#chatbot header span {
-  cursor: pointer;
-  font-size: 20px;
-}
-
-/* MENSAGENS */
-#messages {
-  flex: 1;
-  padding: 14px;
-  overflow-y: auto;
-  background: radial-gradient(circle at top, #1f1f1f, #0d0d0d);
-}
-
-.msg {
-  max-width: 80%;
-  padding: 10px 14px;
-  margin-bottom: 10px;
-  border-radius: 14px;
-  font-size: 0.95rem;
-}
-
-.bot {
-  background: #1f1f1f;
-  color: #fff;
-}
-
-.user {
-  background: var(--green);
-  color: #000;
-  margin-left: auto;
-}
-
-/* INPUT */
-#input {
-  display: flex;
-  padding: 10px;
-  background: #000;
-  border-top: 1px solid #222;
-}
-
-#input input {
-  flex: 1;
-  background: #111;
-  color: #fff;
-  border: none;
-  border-radius: 12px;
-  padding: 10px 14px;
-}
-
-#input button {
-  margin-left: 10px;
-  background: var(--green);
-  border: none;
-  color: #000;
-  font-weight: 700;
-  padding: 10px 18px;
-  border-radius: 12px;
-  cursor: pointer;
-}
-</style>
-
-<!-- BOTÃO -->
-<div id="chatbot-btn" onclick="toggleChat()">
-  <i class="fas fa-comments"></i>
-</div>
-
-<!-- CHAT -->
-<div id="chatbot">
-  <header>
-    Atendimento Imobiliário
-    <span onclick="toggleChat()">✕</span>
-  </header>
-  <div id="messages"></div>
-  <div id="input">
-    <input id="text" placeholder="Digite sua mensagem..." />
-    <button onclick="send()">Enviar</button>
+  <!-- BOTÃO DO CHAT -->
+  <div id="chatbot-btn" onclick="toggleChat()">
+    <i class="fas fa-comments"></i>
   </div>
-</div>
 
-<script>
-const chatbot = document.getElementById("chatbot");
-const messages = document.getElementById("messages");
-const input = document.getElementById("text");
+  <!-- CHAT -->
+  <div id="chatbot">
+    <header>
+      Atendimento Imobiliário
+      <span onclick="toggleChat()">✕</span>
+    </header>
+    <div id="messages"></div>
+    <div id="input">
+      <input id="text" placeholder="Digite sua mensagem..." />
+      <button onclick="send()">Enviar</button>
+    </div>
+  </div>
 
-let conversation = [];
-let opened = false;
+  <script>
+  const chatbot = document.getElementById("chatbot");
+  const messages = document.getElementById("messages");
+  const input = document.getElementById("text");
+  let opened = false;
 
-function toggleChat() {
-  opened = !opened;
-  chatbot.style.display = opened ? "flex" : "none";
-}
+  function toggleChat() {
+    opened = !opened;
+    chatbot.style.display = opened ? "flex" : "none";
+  }
 
-function addMessage(text, cls) {
-  const div = document.createElement("div");
-  div.className = "msg " + cls;
-  div.textContent = text;
-  messages.appendChild(div);
-  messages.scrollTop = messages.scrollHeight;
-}
+  function addMessage(text, cls) {
+    const div = document.createElement("div");
+    div.className = "msg " + cls;
+    div.textContent = text;
+    messages.appendChild(div);
+    messages.scrollTop = messages.scrollHeight;
+  }
 
-async function send() {
-  const text = input.value.trim();
-  if (!text) return;
+  async function send() {
+    const text = input.value.trim();
+    if (!text) return;
 
-  addMessage(text, "user");
-  input.value = "";
-  conversation.push({ role: "user", content: text });
+    addMessage(text, "user");
+    input.value = "";
 
-  try {
-    const res = await fetch(
-      "https://corretorvitorarceno.vitorguxta9706.workers.dev/",
-      {
+    try {
+      const res = await fetch("https://corretorvitorarceno.vitorguxta9706.workers.dev/", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ messages: conversation })
-      }
-    );
+        body: JSON.stringify({ mensagem: text }) // ✅ Ajustado
+      });
 
-    const data = await res.json();
-    addMessage(data.reply, "bot");
-    conversation.push({ role: "assistant", content: data.reply });
+      const data = await res.json();
+      addMessage(data.reply, "bot");
 
-  } catch {
-    addMessage("⚠️ Erro de conexão.", "bot");
+    } catch {
+      addMessage("⚠️ Erro de conexão.", "bot");
+    }
   }
-}
-</script>
-<!-- FIM CHATBOT -->
+  </script>
+</body>
+</html>
