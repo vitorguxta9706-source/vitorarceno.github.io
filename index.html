@@ -235,5 +235,118 @@
     <small>© 2026 Vitor Arceno — Todos os direitos reservados.</small>
   </footer>
 
+<!-- CHATBOT -->
+<style>
+#chatbot-btn{
+  position:fixed;
+  bottom:20px;
+  right:20px;
+  background:#00ff88;
+  color:#000;
+  width:60px;
+  height:60px;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:26px;
+  cursor:pointer;
+  z-index:999;
+}
+#chatbot{
+  position:fixed;
+  bottom:90px;
+  right:20px;
+  width:320px;
+  max-height:420px;
+  background:#111;
+  border:1px solid #00ff88;
+  border-radius:16px;
+  display:none;
+  flex-direction:column;
+  z-index:999;
+}
+#chatbot header{
+  padding:12px;
+  background:#00ff88;
+  color:#000;
+  font-weight:bold;
+  text-align:center;
+  border-radius:16px 16px 0 0;
+}
+#chatbot .messages{
+  padding:12px;
+  flex:1;
+  overflow-y:auto;
+  font-size:0.9rem;
+}
+.msg{
+  margin-bottom:10px;
+}
+.bot{color:#00ff88}
+.user{text-align:right}
+#chatbot input{
+  border:none;
+  padding:12px;
+  outline:none;
+  border-top:1px solid #333;
+  background:#000;
+  color:#fff;
+  border-radius:0 0 16px 16px;
+}
+</style>
+
+<div id="chatbot-btn"><i class="fas fa-comments"></i></div>
+
+<div id="chatbot">
+  <header>Atendimento Online</header>
+  <div class="messages" id="chatMessages">
+    <div class="msg bot">Olá 👋 Sou o assistente do Vitor. Como posso te ajudar?</div>
+  </div>
+  <input type="text" id="chatInput" placeholder="Digite sua pergunta...">
+</div>
+
+<script>
+const btn = document.getElementById("chatbot-btn");
+const chat = document.getElementById("chatbot");
+const input = document.getElementById("chatInput");
+const messages = document.getElementById("chatMessages");
+
+btn.onclick = () => {
+  chat.style.display = chat.style.display === "flex" ? "none" : "flex";
+};
+
+input.addEventListener("keydown", e => {
+  if(e.key === "Enter" && input.value.trim()){
+    sendUser(input.value.trim());
+    input.value="";
+  }
+});
+
+function sendUser(text){
+  messages.innerHTML += `<div class="msg user">${text}</div>`;
+  messages.scrollTop = messages.scrollHeight;
+  setTimeout(()=>botReply(text),600);
+}
+
+function botReply(text){
+  let r = "Posso te ajudar com imóveis em Balneário Piçarras 😊";
+  text = text.toLowerCase();
+
+  if(text.includes("preço") || text.includes("valor"))
+    r = "Os valores variam conforme o imóvel. Posso te encaminhar para o WhatsApp para detalhes.";
+  else if(text.includes("localização"))
+    r = "Trabalhamos principalmente em Balneário Piçarras e região.";
+  else if(text.includes("financiamento"))
+    r = "Sim! Há opções de financiamento. Quer falar direto com o corretor?";
+  else if(text.includes("contato") || text.includes("whatsapp"))
+    r = "Clique aqui para falar no WhatsApp: <a href='https://wa.me/5547920006793' style='color:#00ff88'>Abrir WhatsApp</a>";
+
+  messages.innerHTML += `<div class="msg bot">${r}</div>`;
+  messages.scrollTop = messages.scrollHeight;
+}
+</script>
+<!-- FIM CHATBOT -->
+
 </body>
 </html>
