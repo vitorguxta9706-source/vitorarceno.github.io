@@ -4,9 +4,23 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Vitor Arceno – Imóveis em Balneário Piçarras</title>
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="https://related-fuchsia-2tll7jftii.edgeone.app/Gemini_Generated_Image_rysid4rysid4rysi.png">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 
   <!-- Ícones -->
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+
+  <!-- SEO e Open Graph -->
+  <meta name="description" content="Corretor de imóveis em Balneário Piçarras. Veja imóveis à venda e fale com Vitor Arceno pelo WhatsApp.">
+  <meta property="og:title" content="Vitor Arceno – Imóveis em Balneário Piçarras">
+  <meta property="og:description" content="Encontre o imóvel ideal com atendimento personalizado.">
+  <meta property="og:image" content="https://odd-ivory-amafrcm6wz.edgeone.app/picarras-2048x1152-1.jpeg">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://vitorguxta9706-source.github.io/vitorarceno.github.io/">
 
   <style>
     :root {
@@ -22,12 +36,13 @@
     }
 
     body {
-      font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      font-family: "Inter", sans-serif;
       background: var(--dark);
       color: #fff;
       line-height: 1.5;
     }
 
+    /* ===== HERO ===== */
     .hero {
       height: 100vh;
       background: url("https://odd-ivory-amafrcm6wz.edgeone.app/picarras-2048x1152-1.jpeg") center/cover no-repeat;
@@ -42,12 +57,19 @@
       content: "";
       position: absolute;
       inset: 0;
-      background: rgba(0,0,0,0.6);
+      background: linear-gradient(180deg, rgba(0,0,0,0.75), rgba(0,0,0,0.6));
+      backdrop-filter: blur(2px);
     }
 
     .hero-content {
       position: relative;
       z-index: 2;
+      animation: fadeIn 1.5s ease-in-out;
+    }
+
+    .hero-content h1 {
+      font-size: 3rem;
+      letter-spacing: 1px;
     }
 
     .btn-wa {
@@ -60,8 +82,15 @@
       margin-top: 25px;
       font-weight: 600;
       text-decoration: none;
+      transition: all 0.3s ease;
     }
 
+    .btn-wa:hover {
+      background: var(--neongreen-dark);
+      transform: translateY(-2px);
+    }
+
+    /* ===== SIDE CARD ===== */
     .side-card {
       position: fixed;
       top: 50%;
@@ -74,6 +103,7 @@
       padding: 14px;
       text-align: center;
       z-index: 10;
+      transition: all 0.3s ease;
     }
 
     .side-card img {
@@ -84,6 +114,7 @@
       border: 2px solid var(--neongreen);
     }
 
+    /* ===== CARDS ===== */
     section {
       padding: 80px 20px;
       max-width: 1100px;
@@ -106,6 +137,12 @@
       border: 1px solid #333;
       border-radius: 14px;
       overflow: hidden;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0, 255, 136, 0.2);
     }
 
     .card img {
@@ -142,8 +179,15 @@
       text-align: center;
       font-weight: 600;
       text-decoration: none;
+      transition: all 0.3s ease;
     }
 
+    .btn-card:hover {
+      background: var(--neongreen-dark);
+      transform: translateY(-2px);
+    }
+
+    /* ===== FOOTER ===== */
     footer {
       background: #000;
       padding: 25px;
@@ -155,6 +199,12 @@
       color: var(--neongreen);
       margin: 0 15px;
       text-decoration: none;
+      transition: all 0.3s ease;
+    }
+
+    footer a:hover {
+      color: var(--neongreen-dark);
+      transform: scale(1.1);
     }
 
     footer small {
@@ -164,11 +214,26 @@
       color: #666;
     }
 
+    /* ===== ANIMAÇÕES ===== */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ===== RESPONSIVIDADE ===== */
     @media(max-width: 900px) {
       .side-card {
         position: static;
         transform: none;
         margin: 20px auto;
+        width: 220px;
+      }
+    }
+
+    @media(max-width: 600px) {
+      .hero {
+        height: 70vh;
+        background-position: center top;
       }
     }
   </style>
@@ -195,7 +260,6 @@
     <h2>Imóveis em destaque</h2>
 
     <div class="cards">
-
       <div class="card">
         <img src="https://valuable-amethyst-iftgnzkoza.edgeone.app/WhatsApp%20Image%202026-01-21%20at%2014.36.07.jpeg">
         <div class="card-body">
@@ -223,7 +287,6 @@
         </div>
         <a class="btn-card" href="https://wa.me/5547920006793?text=Olá,%20quero%20saber%20mais%20sobre%20o%20Residencial%20Mayorca">Saber mais</a>
       </div>
-
     </div>
   </section>
 
@@ -231,7 +294,6 @@
     <a href="https://wa.me/5547920006793"><i class="fab fa-whatsapp"></i></a>
     <a href="mailto:vitor_arceno@hotmail.com"><i class="fas fa-envelope"></i></a>
     <a href="https://instagram.com/vitor_arceno_" target="_blank"><i class="fab fa-instagram"></i></a>
-
     <small>© 2026 Vitor Arceno — Todos os direitos reservados.</small>
   </footer>
 
@@ -251,8 +313,17 @@
       justify-content: center;
       cursor: pointer;
       z-index: 99999;
+      transition: all 0.3s ease;
     }
-    #chatbot-btn i { font-size: 26px; color: #000; }
+    #chatbot-btn i { font-size: 26px; color: #000; transition: transform 0.3s; }
+    #chatbot-btn i.fa-bounce {
+      animation: bounce 1s infinite;
+    }
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-6px); }
+    }
+
     #chatbot {
       position: fixed;
       bottom: 100px;
@@ -267,6 +338,7 @@
       overflow: hidden;
       z-index: 99999;
     }
+
     #chatbot header {
       background: linear-gradient(135deg, #00ff88, #00cc66);
       color: #000;
@@ -276,41 +348,15 @@
       justify-content: space-between;
       align-items: center;
     }
+
     #chatbot header span { cursor: pointer; font-size: 20px; }
-    #messages {
-      flex: 1;
-      padding: 14px;
-      overflow-y: auto;
-      background: radial-gradient(circle at top, #1f1f1f, #0d0d0d);
-    }
-    .msg {
-      max-width: 80%;
-      padding: 10px 14px;
-      margin-bottom: 10px;
-      border-radius: 14px;
-      font-size: 0.95rem;
-    }
+    #messages { flex: 1; padding: 14px; overflow-y: auto; background: radial-gradient(circle at top, #1f1f1f, #0d0d0d); }
+    .msg { max-width: 80%; padding: 10px 14px; margin-bottom: 10px; border-radius: 14px; font-size: 0.95rem; }
     .bot { background: #1f1f1f; color: #fff; }
     .user { background: #00ff88; color: #000; margin-left: auto; }
     #input { display: flex; padding: 10px; background: #000; border-top: 1px solid #222; }
-    #input input {
-      flex: 1;
-      background: #111;
-      color: #fff;
-      border: none;
-      border-radius: 12px;
-      padding: 10px 14px;
-    }
-    #input button {
-      margin-left: 10px;
-      background: #00ff88;
-      border: none;
-      color: #000;
-      font-weight: 700;
-      padding: 10px 18px;
-      border-radius: 12px;
-      cursor: pointer;
-    }
+    #input input { flex: 1; background: #111; color: #fff; border: none; border-radius: 12px; padding: 10px 14px; }
+    #input button { margin-left: 10px; background: #00ff88; border: none; color: #000; font-weight: 700; padding: 10px 18px; border-radius: 12px; cursor: pointer; }
   </style>
 
   <!-- BOTÃO DO CHAT -->
@@ -340,6 +386,7 @@
   function toggleChat() {
     opened = !opened;
     chatbot.style.display = opened ? "flex" : "none";
+    document.querySelector("#chatbot-btn i").classList.toggle("fa-bounce", !opened);
   }
 
   function addMessage(text, cls) {
@@ -361,15 +408,31 @@
       const res = await fetch("https://corretorvitorarceno.vitorguxta9706.workers.dev/", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ mensagem: text }) // ✅ Ajustado
+        body: JSON.stringify({ mensagem: text })
       });
 
       const data = await res.json();
       addMessage(data.reply, "bot");
-
     } catch {
       addMessage("⚠️ Erro de conexão.", "bot");
     }
+  }
+  </script>
+
+  <!-- Dados estruturados (SEO) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "RealEstateAgent",
+    "name": "Vitor Arceno",
+    "areaServed": "Balneário Piçarras",
+    "image": "https://related-fuchsia-2tll7jftii.edgeone.app/Gemini_Generated_Image_rysid4rysid4rysi.png",
+    "telephone": "+55 47 92000-6793",
+    "url": "https://vitorguxta9706-source.github.io/vitorarceno.github.io/",
+    "sameAs": [
+      "https://instagram.com/vitor_arceno_",
+      "mailto:vitor_arceno@hotmail.com"
+    ]
   }
   </script>
 </body>
