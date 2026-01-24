@@ -42,7 +42,6 @@
       line-height: 1.5;
     }
 
-    /* ===== HERO COM VÍDEO ===== */
     .hero {
       position: relative;
       height: 100vh;
@@ -110,7 +109,6 @@
       transform: translateY(-2px);
     }
 
-    /* ===== SIDE CARD ===== */
     .side-card {
       position: fixed;
       top: 50%;
@@ -134,7 +132,6 @@
       border: 2px solid var(--neongreen);
     }
 
-    /* ===== CARDS ===== */
     section {
       padding: 80px 20px;
       max-width: 1100px;
@@ -207,7 +204,6 @@
       transform: translateY(-2px);
     }
 
-    /* ===== FOOTER ===== */
     footer {
       background: #000;
       padding: 25px;
@@ -234,13 +230,11 @@
       color: #666;
     }
 
-    /* ===== ANIMAÇÕES ===== */
     @keyframes fadeIn {
       from { opacity: 0; transform: translateY(20px); }
       to { opacity: 1; transform: translateY(0); }
     }
 
-    /* ===== RESPONSIVIDADE ===== */
     @media(max-width: 900px) {
       .side-card {
         position: static;
@@ -284,7 +278,6 @@
     <p><strong>Vitor Arceno</strong><br>Corretor de Imóveis<br>Balneário Piçarras</p>
   </aside>
 
-  <!-- HERO COM VÍDEO -->
   <header class="hero">
     <div class="video-bg">
       <iframe
@@ -309,6 +302,7 @@
     <h2>Imóveis em destaque</h2>
 
     <div class="cards">
+
       <div class="card">
         <img src="https://valuable-amethyst-iftgnzkoza.edgeone.app/WhatsApp%20Image%202026-01-21%20at%2014.36.07.jpeg" alt="Ilhas de Fiji">
         <div class="card-body">
@@ -336,6 +330,24 @@
         </div>
         <a class="btn-card" href="https://wa.me/5547920006793?text=Olá,%20quero%20saber%20mais%20sobre%20o%20Residencial%20Mayorca">Saber mais</a>
       </div>
+
+      <!-- NOVO CARD ADICIONADO -->
+      <div class="card">
+        <img src="https://active-beige-8vziirvd9o.edgeone.app/trapani%20fptp.png" alt="Villagio di Trapani">
+        <div class="card-body">
+          <h3>Villagio di Trapani</h3>
+          <ul>
+            <li>Studios e Studio + Dormitório</li>
+            <li>38,39 m² a 85,30 m²</li>
+            <li>1 vaga de garagem</li>
+            <li>Ótima localização</li>
+            <li>Vista para o mar</li>
+            <li>Alto padrão de acabamento</li>
+          </ul>
+        </div>
+        <a class="btn-card" href="https://wa.me/5547920006793?text=Olá,%20quero%20saber%20mais%20sobre%20o%20Villagio%20di%20Trapani">Saber mais</a>
+      </div>
+
     </div>
   </section>
 
@@ -365,9 +377,7 @@
       transition: all 0.3s ease;
     }
     #chatbot-btn i { font-size: 26px; color: #000; transition: transform 0.3s; }
-    #chatbot-btn i.fa-bounce {
-      animation: bounce 1s infinite;
-    }
+    #chatbot-btn i.fa-bounce { animation: bounce 1s infinite; }
     @keyframes bounce {
       0%, 100% { transform: translateY(0); }
       50% { transform: translateY(-6px); }
@@ -408,12 +418,10 @@
     #input button { margin-left: 10px; background: #00ff88; border: none; color: #000; font-weight: 700; padding: 10px 18px; border-radius: 12px; cursor: pointer; }
   </style>
 
-  <!-- BOTÃO DO CHAT -->
   <div id="chatbot-btn" onclick="toggleChat()">
     <i class="fas fa-comments"></i>
   </div>
 
-  <!-- CHAT -->
   <div id="chatbot">
     <header>
       Atendimento Imobiliário
@@ -427,48 +435,47 @@
   </div>
 
   <script>
-  const chatbot = document.getElementById("chatbot");
-  const messages = document.getElementById("messages");
-  const input = document.getElementById("text");
-  let opened = false;
+    const chatbot = document.getElementById("chatbot");
+    const messages = document.getElementById("messages");
+    const input = document.getElementById("text");
+    let opened = false;
 
-  function toggleChat() {
-    opened = !opened;
-    chatbot.style.display = opened ? "flex" : "none";
-    document.querySelector("#chatbot-btn i").classList.toggle("fa-bounce", !opened);
-  }
-
-  function addMessage(text, cls) {
-    const div = document.createElement("div");
-    div.className = "msg " + cls;
-    div.textContent = text;
-    messages.appendChild(div);
-    messages.scrollTop = messages.scrollHeight;
-  }
-
-  async function send() {
-    const text = input.value.trim();
-    if (!text) return;
-
-    addMessage(text, "user");
-    input.value = "";
-
-    try {
-      const res = await fetch("https://corretorvitorarceno.vitorguxta9706.workers.dev/", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ mensagem: text })
-      });
-
-      const data = await res.json();
-      addMessage(data.reply, "bot");
-    } catch {
-      addMessage("⚠️ Erro de conexão.", "bot");
+    function toggleChat() {
+      opened = !opened;
+      chatbot.style.display = opened ? "flex" : "none";
+      document.querySelector("#chatbot-btn i").classList.toggle("fa-bounce", !opened);
     }
-  }
+
+    function addMessage(text, cls) {
+      const div = document.createElement("div");
+      div.className = "msg " + cls;
+      div.textContent = text;
+      messages.appendChild(div);
+      messages.scrollTop = messages.scrollHeight;
+    }
+
+    async function send() {
+      const text = input.value.trim();
+      if (!text) return;
+
+      addMessage(text, "user");
+      input.value = "";
+
+      try {
+        const res = await fetch("https://corretorvitorarceno.vitorguxta9706.workers.dev/", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ mensagem: text })
+        });
+
+        const data = await res.json();
+        addMessage(data.reply, "bot");
+      } catch {
+        addMessage("⚠️ Erro de conexão.", "bot");
+      }
+    }
   </script>
 
-  <!-- Dados estruturados (SEO) -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
