@@ -6,7 +6,9 @@
   <title>Vitor Arceno – Imóveis em Balneário Piçarras</title>
   
   <link rel="icon" type="image/png" href="https://rotten-turquoise-lqkxzn7p2v.edgeone.app/Gemini_Generated_Image_t6ad54t6ad54t6ad-removebg-preview.png">
+
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
 
   <meta name="description" content="Corretor de imóveis em Balneário Piçarras. Veja imóveis à venda e fale com Vitor Arceno pelo WhatsApp.">
@@ -17,23 +19,29 @@
   <meta property="og:url" content="https://vitorguxta9706-source.github.io/vitorarceno.github.io/">
 
   <style>
+    /* 6. IDENTIDADE VISUAL - Variáveis Refinadas */
     :root {
       --neongreen: #00ff88;
       --neongreen-dark: #00cc66;
       --dark: #111;
-
-      /* identidade premium */
+      
+      /* Novas variáveis adicionadas */
       --dark-soft: #1e1e1e;
       --radius-sm: 12px;
       --radius-lg: 18px;
     }
 
-    * { margin:0; padding:0; box-sizing:border-box; }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
     body {
       font-family: "Inter", sans-serif;
       background: var(--dark);
       color: #fff;
+      line-height: 1.5;
     }
 
     .hero {
@@ -47,394 +55,560 @@
     }
 
     .video-bg {
-      position:absolute;
-      inset:0;
-      z-index:0;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      z-index: 0;
     }
 
     .video-bg iframe {
-      position:absolute;
-      top:50%;
-      left:50%;
-      width:180%;
-      height:180%;
-      transform:translate(-50%,-50%);
-      pointer-events:none;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 180%;
+      height: 180%;
+      transform: translate(-50%, -50%);
+      pointer-events: none;
     }
 
+    /* 1. HERO - Overlay mais forte */
     .hero .overlay {
-      position:absolute;
-      inset:0;
+      position: absolute;
+      inset: 0;
+      /* Gradiente atualizado para melhor leitura */
       background: linear-gradient(
         180deg,
         rgba(0,0,0,0.9) 0%,
         rgba(0,0,0,0.7) 45%,
         rgba(0,0,0,0.6) 100%
       );
-      z-index:1;
+      backdrop-filter: blur(2px);
+      z-index: 1;
     }
 
     .hero-content {
-      position:relative;
-      z-index:2;
-      animation:fadeIn 1.5s ease;
+      position: relative;
+      z-index: 2;
+      animation: fadeIn 1.5s ease-in-out;
+    }
+
+    .hero-content h1 {
+      font-size: 3rem;
+      letter-spacing: 1px;
     }
 
     .btn-wa {
-      background:var(--neongreen);
-      color:#000;
-      padding:14px 30px;
-      border-radius:50px;
-      display:inline-block;
-      margin-top:25px;
-      font-weight:600;
-      text-decoration:none;
+      background: var(--neongreen);
+      color: #000;
+      font-size: 1.2rem;
+      padding: 14px 30px;
+      border-radius: 50px;
+      display: inline-block;
+      margin-top: 25px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.3s ease;
     }
 
+    .btn-wa:hover {
+      background: var(--neongreen-dark);
+      transform: translateY(-2px);
+    }
+
+    /* 6. IDENTIDADE VISUAL - Uso de border-radius */
     .side-card {
-      position:fixed;
-      top:50%;
-      left:20px;
-      transform:translateY(-50%);
-      width:170px;
-      background:rgba(0,0,0,.8);
-      border:1px solid var(--neongreen);
-      border-radius:var(--radius-sm);
-      padding:14px;
-      text-align:center;
-      z-index:10;
-      transition:.3s;
-      cursor:pointer;
+      position: fixed;
+      top: 50%;
+      left: 20px;
+      transform: translateY(-50%);
+      width: 170px;
+      background: rgba(0, 0, 0, 0.8);
+      border: 1px solid var(--neongreen);
+      border-radius: var(--radius-sm); /* Atualizado */
+      padding: 14px;
+      text-align: center;
+      z-index: 10;
+      transition: all 0.3s ease;
+    }
+
+    /* 2. SIDE-CARD - Clicável e Hover */
+    .side-card {
+      cursor: pointer;
     }
 
     .side-card:hover {
-      transform:translateY(-50%) scale(1.03);
-      box-shadow:0 0 20px rgba(0,255,136,.45);
+      transform: translateY(-50%) scale(1.03);
+      box-shadow: 0 0 20px rgba(0,255,136,.45);
+    }
+
+    .side-card img {
+      width: 100%;
+      border-radius: 50%;
+      aspect-ratio: 1/1;
+      object-fit: cover;
+      border: 2px solid var(--neongreen);
     }
 
     section {
-      padding:80px 20px;
-      max-width:1100px;
-      margin:auto;
+      padding: 80px 20px;
+      max-width: 1100px;
+      margin: auto;
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 40px;
     }
 
     .cards {
-      display:grid;
-      gap:30px;
-      grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+      display: grid;
+      gap: 30px;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     }
 
+    /* 6. IDENTIDADE VISUAL - Fundo Soft e Radius */
     .card {
-      background:var(--dark-soft);
-      border-radius:var(--radius-lg);
-      overflow:hidden;
-      transition:.3s;
+      background: var(--dark-soft); /* Atualizado */
+      border: 1px solid #333;
+      border-radius: var(--radius-lg); /* Atualizado */
+      overflow: hidden;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0, 255, 136, 0.2);
     }
 
     .card img {
-      width:100%;
-      height:220px;
-      object-fit:cover;
-      transition:transform .45s ease;
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      display: block;
+      /* 3. CARDS - Zoom Premium */
+      transition: transform .45s ease;
     }
 
     .card:hover img {
-      transform:scale(1.08);
+      transform: scale(1.08);
+    }
+
+    .card-body {
+      padding: 18px;
+    }
+
+    .card-body h3 {
+      color: var(--neongreen);
+      margin-bottom: 10px;
+      font-size: 1.2rem;
+    }
+
+    .card-body ul {
+      list-style: none;
+      color: #fff;
+      font-size: 0.95rem;
+      line-height: 1.6;
     }
 
     .btn-card {
-      display:block;
-      margin:18px;
-      background:var(--neongreen);
-      color:#000;
-      padding:12px 0;
-      border-radius:25px;
-      text-align:center;
-      font-weight:600;
-      text-decoration:none;
+      display: block;
+      margin: 18px;
+      background: var(--neongreen);
+      color: #000;
+      padding: 12px 0;
+      border-radius: 25px;
+      text-align: center;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+
+    .btn-card:hover {
+      background: var(--neongreen-dark);
+      transform: translateY(-2px);
     }
 
     footer {
-      background:#000;
-      padding:25px;
-      text-align:center;
+      background: #000;
+      padding: 25px;
+      text-align: center;
+      font-size: 1.5rem;
     }
 
-    /* SETA HERO */
+    footer a {
+      color: var(--neongreen);
+      margin: 0 15px;
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+
+    footer a:hover {
+      color: var(--neongreen-dark);
+      transform: scale(1.1);
+    }
+
+    footer small {
+      display: block;
+      margin-top: 15px;
+      font-size: 0.85rem;
+      color: #666;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* 1. HERO - Animação Seta Scroll */
     .scroll-indicator {
-      position:absolute;
-      bottom:25px;
-      left:50%;
-      transform:translateX(-50%);
-      font-size:26px;
-      color:var(--neongreen);
-      animation:scrollBounce 1.4s infinite;
-      z-index:3;
+      position: absolute;
+      bottom: 25px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 26px;
+      color: var(--neongreen);
+      animation: scrollBounce 1.4s infinite;
+      z-index: 3;
     }
 
     @keyframes scrollBounce {
-      0%,100% { transform:translate(-50%,0); }
-      50% { transform:translate(-50%,10px); }
+      0%,100% { transform: translate(-50%,0); }
+      50% { transform: translate(-50%,10px); }
     }
 
-    @media(max-width:600px){
-      .hero { height:60vh; }
-      .btn-card { padding:16px 0; font-size:1.05rem; }
+    /* 5. MOBILE - Botão WhatsApp Flutuante CSS */
+    .wa-float {
+      position: fixed;
+      bottom: 100px;
+      right: 22px;
+      width: 58px;
+      height: 58px;
+      background: #25D366;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 28px;
+      color: #fff;
+      z-index: 99999;
+      box-shadow: 0 10px 25px rgba(0,0,0,.5);
+      text-decoration: none;
+      transition: transform 0.3s ease;
+    }
+    
+    .wa-float:hover {
+        transform: scale(1.1);
+    }
+
+    @media(max-width: 900px) {
+      .side-card {
+        position: static;
+        transform: none;
+        margin: 20px auto;
+        width: 220px;
+      }
+    }
+
+    @media(max-width: 600px) {
+      /* 5. MOBILE - Hero 60vh */
+      .hero {
+        height: 60vh;
+      }
+
+      .hero-content h1 {
+        font-size: 2rem;
+      }
+
+      .hero-content p {
+        font-size: 1rem;
+      }
+
+      .btn-card { 
+        padding: 16px 0; 
+        font-size: 1.05rem; 
+      }
+
+      footer a {
+        margin: 0 8px;
+        font-size: 1.3rem;
+      }
+
+      #chatbot {
+        width: 90%;
+        height: 70vh;
+        max-height: 480px;
+        right: 5%;
+      }
     }
   </style>
 </head>
 
 <body>
+  <aside class="side-card">
+    <img src="https://related-fuchsia-2tll7jftii.edgeone.app/Gemini_Generated_Image_rysid4rysid4rysi.png" alt="Foto do corretor Vitor Arceno">
+    <p><strong>Vitor Arceno</strong><br>Corretor de Imóveis<br>Balneário Piçarras</p>
+  </aside>
 
-<aside class="side-card">
-  <img src="https://related-fuchsia-2tll7jftii.edgeone.app/Gemini_Generated_Image_rysid4rysid4rysi.png">
-  <p><strong>Vitor Arceno</strong><br>Corretor</p>
-</aside>
-
-<header class="hero">
-  <div class="video-bg">
-    <iframe src="https://www.youtube.com/embed/H1G3FZQSpcU?autoplay=1&mute=1&loop=1&playlist=H1G3FZQSpcU&controls=0"></iframe>
-  </div>
-  <div class="overlay"></div>
-  <div class="hero-content">
-    <h1>Vitor Arceno</h1>
-    <p>Corretor de Imóveis – Balneário Piçarras</p>
-    <a class="btn-wa" href="https://wa.me/5547920006793">Quero comprar um imóvel</a>
-  </div>
-
-  <!-- SETA -->
-  <div class="scroll-indicator">↓</div>
-</header>
-
-<!-- BOTÃO WHATSAPP FLUTUANTE -->
-<a class="wa-float" href="https://wa.me/5547920006793" target="_blank">
-  <i class="fab fa-whatsapp"></i>
-</a>
-
-<script>
-  document.querySelector('.side-card')
-    .addEventListener('click', () => {
-      window.open('https://wa.me/5547920006793','_blank');
-    });
-</script>
-<!-- CHATBOT -->
-<style>
-  #chatbot-btn {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    width: 64px;
-    height: 64px;
-    border-radius: 50%;
-    background: linear-gradient(135deg, #00ff88, #00cc66);
-    box-shadow: 0 15px 30px rgba(0,0,0,.6);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    z-index: 99999;
-    transition: all 0.3s ease;
-  }
-
-  #chatbot-btn i {
-    font-size: 26px;
-    color: #000;
-    transition: transform 0.3s;
-  }
-
-  #chatbot-btn i.fa-bounce {
-    animation: bounce 1s infinite;
-  }
-
-  @keyframes bounce {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-6px); }
-  }
-
-  #chatbot {
-    position: fixed;
-    bottom: 100px;
-    right: 20px;
-    width: 340px;
-    height: 480px;
-    background: linear-gradient(180deg, #1a1a1a, #0b0b0b);
-    border-radius: 18px;
-    box-shadow: 0 25px 50px rgba(0,0,0,.7);
-    display: none;
-    flex-direction: column;
-    overflow: hidden;
-    z-index: 99999;
-  }
-
-  #chatbot header {
-    background: linear-gradient(135deg, #00ff88, #00cc66);
-    color: #000;
-    padding: 14px;
-    font-weight: 700;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-
-  #chatbot header span {
-    cursor: pointer;
-    font-size: 20px;
-  }
-
-  #messages {
-    flex: 1;
-    padding: 14px;
-    overflow-y: auto;
-    background: radial-gradient(circle at top, #1f1f1f, #0d0d0d);
-  }
-
-  .msg {
-    max-width: 80%;
-    padding: 10px 14px;
-    margin-bottom: 10px;
-    border-radius: 14px;
-    font-size: 0.95rem;
-    line-height: 1.4;
-  }
-
-  .bot {
-    background: #1f1f1f;
-    color: #fff;
-  }
-
-  .user {
-    background: #00ff88;
-    color: #000;
-    margin-left: auto;
-  }
-
-  /* 👇 ANIMAÇÃO DIGITANDO */
-  .typing {
-    display: flex;
-    gap: 4px;
-    padding: 10px 14px;
-  }
-
-  .typing span {
-    width: 6px;
-    height: 6px;
-    background: #aaa;
-    border-radius: 50%;
-    animation: typingBlink 1.4s infinite both;
-  }
-
-  .typing span:nth-child(2) { animation-delay: .2s; }
-  .typing span:nth-child(3) { animation-delay: .4s; }
-
-  @keyframes typingBlink {
-    0% { opacity: .2; }
-    20% { opacity: 1; }
-    100% { opacity: .2; }
-  }
-
-  #input {
-    display: flex;
-    padding: 10px;
-    background: #000;
-    border-top: 1px solid #222;
-  }
-
-  #input input {
-    flex: 1;
-    background: #111;
-    color: #fff;
-    border: none;
-    border-radius: 12px;
-    padding: 10px 14px;
-    outline: none;
-  }
-
-  #input button {
-    margin-left: 10px;
-    background: #00ff88;
-    border: none;
-    color: #000;
-    font-weight: 700;
-    padding: 10px 18px;
-    border-radius: 12px;
-    cursor: pointer;
-  }
-</style>
-
-<div id="chatbot-btn" onclick="toggleChat()">
-  <i class="fas fa-comments"></i>
-</div>
-
-<div id="chatbot">
-  <header>
-    Atendimento Imobiliário
-    <span onclick="toggleChat()">✕</span>
+  <header class="hero">
+    <div class="video-bg">
+      <iframe
+        src="https://www.youtube.com/embed/H1G3FZQSpcU?autoplay=1&mute=1&loop=1&playlist=H1G3FZQSpcU&controls=0&showinfo=0&modestbranding=1&rel=0"
+        frameborder="0"
+        allow="autoplay; fullscreen"
+        allowfullscreen
+        loading="lazy"
+      ></iframe>
+    </div>
+    <div class="overlay"></div>
+    <div class="hero-content">
+      <h1>Vitor Arceno</h1>
+      <p>Corretor de Imóveis – Balneário Piçarras</p>
+      <a class="btn-wa" href="https://wa.me/5547920006793?text=Olá,%20quero%20comprar%20um%20imóvel">
+        Quero comprar um imóvel
+      </a>
+    </div>
+    <div class="scroll-indicator">↓</div>
   </header>
 
-  <div id="messages"></div>
+  <section>
+    <h2>Imóveis em destaque</h2>
 
-  <div id="input">
-    <input id="text" placeholder="Digite sua mensagem..." />
-    <button onclick="send()">Enviar</button>
+    <div class="cards">
+
+      <div class="card">
+        <img src="https://valuable-amethyst-iftgnzkoza.edgeone.app/WhatsApp%20Image%202026-01-21%20at%2014.36.07.jpeg" alt="Ilhas de Fiji">
+        <div class="card-body">
+          <h3>Ilhas de Fiji</h3>
+          <ul>
+            <li>2 dormitórios (2 suítes)</li>
+            <li>3 banheiros</li>
+            <li>1 vaga</li>
+            <li>78,85 m²</li>
+          </ul>
+        </div>
+        <a class="btn-card" href="https://wa.me/5547920006793?text=Olá,%20quero%20saber%20mais%20sobre%20o%20Residencial%20Ilhas%20de%20Fiji">Saber mais</a>
+      </div>
+
+      <div class="card">
+        <img src="https://outer-crimson-f2ijobxdpt.edgeone.app/Gemini_Generated_Image_uym46vuym46vuym4.png" alt="Residencial Mayorca">
+        <div class="card-body">
+          <h3>Residencial Mayorca</h3>
+          <ul>
+            <li>2 dormitórios (1 suíte)</li>
+            <li>2 banheiros</li>
+            <li>1 vaga</li>
+            <li>60,86 m²</li>
+          </ul>
+        </div>
+        <a class="btn-card" href="https://wa.me/5547920006793?text=Olá,%20quero%20saber%20mais%20sobre%20o%20Residencial%20Mayorca">Saber mais</a>
+      </div>
+
+      <div class="card">
+        <img src="https://active-beige-8vziirvd9o.edgeone.app/trapani%20fptp.png" alt="Villagio di Trapani">
+        <div class="card-body">
+          <h3>Villagio di Trapani</h3>
+          <ul>
+            <li>Studios e Studio + Dormitório</li>
+            <li>38,39 m² a 85,30 m²</li>
+            <li>1 vaga de garagem</li>
+            <li>Ótima localização</li>
+            <li>Vista para o mar</li>
+            <li>Alto padrão de acabamento</li>
+          </ul>
+        </div>
+        <a class="btn-card" href="https://wa.me/5547920006793?text=Olá,%20quero%20saber%20mais%20sobre%20o%20Villagio%20di%20Trapani">Saber mais</a>
+      </div>
+
+    </div>
+  </section>
+
+  <a class="wa-float" href="https://wa.me/5547920006793" target="_blank">
+    <i class="fab fa-whatsapp"></i>
+  </a>
+
+  <footer>
+    <a href="https://wa.me/5547920006793"><i class="fab fa-whatsapp"></i></a>
+    <a href="mailto:vitor_arceno@hotmail.com"><i class="fas fa-envelope"></i></a>
+    <a href="https://instagram.com/vitor_arceno_" target="_blank"><i class="fab fa-instagram"></i></a>
+    <small>© 2026 Vitor Arceno — Todos os direitos reservados.</small>
+  </footer>
+
+  <style>
+    #chatbot-btn {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #00ff88, #00cc66);
+      box-shadow: 0 15px 30px rgba(0,0,0,.6);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 99999;
+      transition: all 0.3s ease;
+    }
+    #chatbot-btn i { font-size: 26px; color: #000; transition: transform 0.3s; }
+    #chatbot-btn i.fa-bounce { animation: bounce 1s infinite; }
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-6px); }
+    }
+
+    #chatbot {
+      position: fixed;
+      bottom: 100px;
+      right: 20px;
+      width: 340px;
+      height: 480px;
+      background: linear-gradient(180deg, #1a1a1a, #0b0b0b);
+      /* 6. IDENTIDADE VISUAL - Uso de Radius e Cor */
+      background: var(--dark-soft);
+      border-radius: var(--radius-lg);
+      box-shadow: 0 25px 50px rgba(0,0,0,.7);
+      display: none;
+      flex-direction: column;
+      overflow: hidden;
+      z-index: 99999;
+    }
+
+    #chatbot header {
+      background: linear-gradient(135deg, #00ff88, #00cc66);
+      color: #000;
+      padding: 14px;
+      font-weight: 700;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    #chatbot header span { cursor: pointer; font-size: 20px; }
+    #messages { flex: 1; padding: 14px; overflow-y: auto; background: radial-gradient(circle at top, #1f1f1f, #0d0d0d); }
+    .msg { max-width: 80%; padding: 10px 14px; margin-bottom: 10px; border-radius: 14px; font-size: 0.95rem; }
+    .bot { background: #1f1f1f; color: #fff; }
+    .user { background: #00ff88; color: #000; margin-left: auto; }
+    #input { display: flex; padding: 10px; background: #000; border-top: 1px solid #222; }
+    #input input { flex: 1; background: #111; color: #fff; border: none; border-radius: 12px; padding: 10px 14px; }
+    #input button { margin-left: 10px; background: #00ff88; border: none; color: #000; font-weight: 700; padding: 10px 18px; border-radius: 12px; cursor: pointer; }
+
+    /* 4. CHATBOT - Animação "digitando..." */
+    .typing {
+      display: flex;
+      gap: 4px;
+    }
+
+    .typing span {
+      width: 6px;
+      height: 6px;
+      background: #aaa;
+      border-radius: 50%;
+      animation: typingBlink 1.4s infinite both;
+    }
+
+    .typing span:nth-child(2){animation-delay:.2s}
+    .typing span:nth-child(3){animation-delay:.4s}
+
+    @keyframes typingBlink {
+      0% { opacity: .2; }
+      20% { opacity: 1; }
+      100% { opacity: .2; }
+    }
+  </style>
+
+  <div id="chatbot-btn" onclick="toggleChat()">
+    <i class="fas fa-comments"></i>
   </div>
-</div>
 
-<script>
-  const chatbot = document.getElementById("chatbot");
-  const messages = document.getElementById("messages");
-  const input = document.getElementById("text");
-  let opened = false;
+  <div id="chatbot">
+    <header>
+      Atendimento Imobiliário
+      <span onclick="toggleChat()">✕</span>
+    </header>
+    <div id="messages"></div>
+    <div id="input">
+      <input id="text" placeholder="Digite sua mensagem..." />
+      <button onclick="send()">Enviar</button>
+    </div>
+  </div>
 
-  function toggleChat() {
-    opened = !opened;
-    chatbot.style.display = opened ? "flex" : "none";
-    document
-      .querySelector("#chatbot-btn i")
-      .classList.toggle("fa-bounce", !opened);
-  }
+  <script>
+    const chatbot = document.getElementById("chatbot");
+    const messages = document.getElementById("messages");
+    const input = document.getElementById("text");
+    let opened = false;
 
-  function addMessage(text, cls) {
-    const div = document.createElement("div");
-    div.className = "msg " + cls;
-    div.textContent = text;
-    messages.appendChild(div);
-    messages.scrollTop = messages.scrollHeight;
-  }
+    function toggleChat() {
+      opened = !opened;
+      chatbot.style.display = opened ? "flex" : "none";
+      document.querySelector("#chatbot-btn i").classList.toggle("fa-bounce", !opened);
+    }
 
-  async function send() {
-    const text = input.value.trim();
-    if (!text) return;
+    function addMessage(text, cls) {
+      const div = document.createElement("div");
+      div.className = "msg " + cls;
+      div.textContent = text;
+      messages.appendChild(div);
+      messages.scrollTop = messages.scrollHeight;
+    }
 
-    addMessage(text, "user");
-    input.value = "";
+    async function send() {
+      const text = input.value.trim();
+      if (!text) return;
 
-    /* 👇 indicador digitando */
-    const typing = document.createElement("div");
-    typing.className = "msg bot typing";
-    typing.innerHTML = "<span></span><span></span><span></span>";
-    messages.appendChild(typing);
-    messages.scrollTop = messages.scrollHeight;
+      addMessage(text, "user");
+      input.value = "";
 
-    try {
-      const res = await fetch(
-        "https://corretorvitorarceno.vitorguxta9706.workers.dev/",
-        {
+      // 4. CHATBOT - Implementação da animação de digitação
+      const typing = document.createElement("div");
+      typing.className = "msg bot typing";
+      typing.innerHTML = "<span></span><span></span><span></span>";
+      messages.appendChild(typing);
+      messages.scrollTop = messages.scrollHeight;
+
+      try {
+        const res = await fetch("https://corretorvitorarceno.vitorguxta9706.workers.dev/", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ mensagem: text })
-        }
-      );
+        });
 
-      const data = await res.json();
-      typing.remove();
-      addMessage(data.reply, "bot");
-
-    } catch {
-      typing.remove();
-      addMessage("⚠️ Erro de conexão.", "bot");
+        const data = await res.json();
+        
+        // Remove animação e mostra mensagem
+        typing.remove();
+        addMessage(data.reply, "bot");
+      } catch {
+        typing.remove();
+        addMessage("⚠️ Erro de conexão.", "bot");
+      }
     }
-  }
-</script>
 
+    // 2. SIDE-CARD - Listener para clique
+    document.querySelector('.side-card')
+      .addEventListener('click', () => {
+        window.open('https://wa.me/5547920006793','_blank');
+      });
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "RealEstateAgent",
+    "name": "Vitor Arceno",
+    "areaServed": "Balneário Piçarras",
+    "image": "https://rotten-turquoise-lqkxzn7p2v.edgeone.app/Gemini_Generated_Image_t6ad54t6ad54t6ad-removebg-preview.png",
+    "telephone": "+55 47 92000-6793",
+    "url": "https://vitorguxta9706-source.github.io/vitorarceno.github.io/",
+    "sameAs": [
+      "https://instagram.com/vitor_arceno_",
+      "mailto:vitor_arceno@hotmail.com"
+    ]
+  }
+  </script>
 </body>
 </html>
