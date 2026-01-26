@@ -19,13 +19,10 @@
   <meta property="og:url" content="https://vitorguxta9706-source.github.io/vitorarceno.github.io/">
 
   <style>
-    /* 6. IDENTIDADE VISUAL - Variáveis Refinadas */
     :root {
       --neongreen: #00ff88;
       --neongreen-dark: #00cc66;
       --dark: #111;
-      
-      /* Novas variáveis adicionadas */
       --dark-soft: #1e1e1e;
       --radius-sm: 12px;
       --radius-lg: 18px;
@@ -74,11 +71,9 @@
       pointer-events: none;
     }
 
-    /* 1. HERO - Overlay mais forte */
     .hero .overlay {
       position: absolute;
       inset: 0;
-      /* Gradiente atualizado para melhor leitura */
       background: linear-gradient(
         180deg,
         rgba(0,0,0,0.9) 0%,
@@ -118,7 +113,6 @@
       transform: translateY(-2px);
     }
 
-    /* 6. IDENTIDADE VISUAL - Uso de border-radius */
     .side-card {
       position: fixed;
       top: 50%;
@@ -127,15 +121,11 @@
       width: 170px;
       background: rgba(0, 0, 0, 0.8);
       border: 1px solid var(--neongreen);
-      border-radius: var(--radius-sm); /* Atualizado */
+      border-radius: var(--radius-sm);
       padding: 14px;
       text-align: center;
       z-index: 10;
       transition: all 0.3s ease;
-    }
-
-    /* 2. SIDE-CARD - Clicável e Hover */
-    .side-card {
       cursor: pointer;
     }
 
@@ -169,11 +159,10 @@
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     }
 
-    /* 6. IDENTIDADE VISUAL - Fundo Soft e Radius */
     .card {
-      background: var(--dark-soft); /* Atualizado */
+      background: var(--dark-soft);
       border: 1px solid #333;
-      border-radius: var(--radius-lg); /* Atualizado */
+      border-radius: var(--radius-lg);
       overflow: hidden;
       transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
@@ -188,7 +177,6 @@
       height: 220px;
       object-fit: cover;
       display: block;
-      /* 3. CARDS - Zoom Premium */
       transition: transform .45s ease;
     }
 
@@ -262,7 +250,6 @@
       to { opacity: 1; transform: translateY(0); }
     }
 
-    /* 1. HERO - Animação Seta Scroll */
     .scroll-indicator {
       position: absolute;
       bottom: 25px;
@@ -279,7 +266,6 @@
       50% { transform: translate(-50%,10px); }
     }
 
-    /* 5. MOBILE - Botão WhatsApp Flutuante CSS */
     .wa-float {
       position: fixed;
       bottom: 100px;
@@ -313,7 +299,6 @@
     }
 
     @media(max-width: 600px) {
-      /* 5. MOBILE - Hero 60vh */
       .hero {
         height: 60vh;
       }
@@ -414,9 +399,7 @@
             <li>Studios e Studio + Dormitório</li>
             <li>38,39 m² a 85,30 m²</li>
             <li>1 vaga de garagem</li>
-            <li>Ótima localização</li>
             <li>Vista para o mar</li>
-            <li>Alto padrão de acabamento</li>
           </ul>
         </div>
         <a class="btn-card" href="https://wa.me/5547920006793?text=Olá,%20quero%20saber%20mais%20sobre%20o%20Villagio%20di%20Trapani">Saber mais</a>
@@ -466,8 +449,6 @@
       right: 20px;
       width: 340px;
       height: 480px;
-      background: linear-gradient(180deg, #1a1a1a, #0b0b0b);
-      /* 6. IDENTIDADE VISUAL - Uso de Radius e Cor */
       background: var(--dark-soft);
       border-radius: var(--radius-lg);
       box-shadow: 0 25px 50px rgba(0,0,0,.7);
@@ -496,7 +477,6 @@
     #input input { flex: 1; background: #111; color: #fff; border: none; border-radius: 12px; padding: 10px 14px; }
     #input button { margin-left: 10px; background: #00ff88; border: none; color: #000; font-weight: 700; padding: 10px 18px; border-radius: 12px; cursor: pointer; }
 
-    /* 4. CHATBOT - Animação "digitando..." */
     .typing {
       display: flex;
       gap: 4px;
@@ -563,7 +543,6 @@
       addMessage(text, "user");
       input.value = "";
 
-      // 4. CHATBOT - Implementação da animação de digitação
       const typing = document.createElement("div");
       typing.className = "msg bot typing";
       typing.innerHTML = "<span></span><span></span><span></span>";
@@ -578,8 +557,6 @@
         });
 
         const data = await res.json();
-        
-        // Remove animação e mostra mensagem
         typing.remove();
         addMessage(data.reply, "bot");
       } catch {
@@ -588,7 +565,6 @@
       }
     }
 
-    // 2. SIDE-CARD - Listener para clique
     document.querySelector('.side-card')
       .addEventListener('click', () => {
         window.open('https://wa.me/5547920006793','_blank');
